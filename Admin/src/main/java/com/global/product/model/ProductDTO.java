@@ -1,4 +1,4 @@
-package com.global.product.dto;
+package com.global.product.model;
 
 import java.math.BigDecimal;
 import java.sql.Date;
