@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.global.action.Action;
+import com.global.action.View;
 import com.global.customer.model.CustomerDAO;
 import com.global.customer.model.CustomerDTO;
 import com.global.customer.model.PageInfo;
@@ -13,7 +14,7 @@ import com.global.customer.model.PageInfo;
 public class ListCustomerAction implements Action {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public View execute(HttpServletRequest request, HttpServletResponse response) {
         CustomerDAO dao = CustomerDAO.getInstance();
         
         String status = request.getParameter("status"); // 체크박스에서 선택한 상태
@@ -72,7 +73,8 @@ public class ListCustomerAction implements Action {
         
         // 뷰 페이지로 이동
         request.setAttribute("url", "/views/member/customerList.jsp");
-        return "main.go";
+        
+        return new View("views/main");
     }
 }
 

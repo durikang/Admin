@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.global.action.Action;
+import com.global.action.View;
 import com.global.customer.model.CustomerDAO;
 
 public class CheckIdDuplicateAction implements Action {
 
 	  @Override
-	    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    public View execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	        String memId = request.getParameter("memId");
 	        boolean isDuplicate = CustomerDAO.getInstance().checkDuplicateId(memId);
 	        
