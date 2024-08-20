@@ -7,14 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.global.action.Action;
-import com.global.action.View;
 import com.global.customer.model.CustomerDAO;
 import com.global.customer.model.CustomerDTO;
 
 public class InsertCustomerAction implements Action {
 
 	@Override
-	public View execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		String id = request.getParameter("memId").trim();
 		String name = request.getParameter("memName").trim();
@@ -37,12 +36,12 @@ public class InsertCustomerAction implements Action {
 		
 		if(check>0) {
 			out.println("<script>");
-			out.println("alert('고객 등록 성공!!!')");
+			out.println("alert('고객 정보 변경 성공!!!')");
 			out.println("location.href='mlist.go'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
-			out.println("alert('고객 등록 실패!!!')");
+			out.println("alert('고객 정보 변경 실패!!!')");
 			out.println("history.go(-1)");
 			out.println("</script>");
 		}
