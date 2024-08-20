@@ -36,14 +36,6 @@
 			<a href="#orderList">주문 목록</a> <a href="#orderProcess">주문 처리</a>
 		</div>
 	</div>
-	<div class="dropdown">
-		<button class="dropbtn">
-			게시판 <i class="fa fa-caret-down"></i>
-		</button>
-		<div class="dropdown-content">
-			<a href="#orderList">공지 게시판</a> <a href="#orderProcess">자유 게시판</a> <a href="#orderProcess">리뷰 게시판</a> <a href="#orderProcess">고객 QNA 게시판</a>
-		</div>
-	</div>
 	<a href="#statistics">통계</a> <a href="#settings">설정</a>
 </div>
 

@@ -1,25 +1,18 @@
-package com.global.board.model;
+package com.global.board.dto;
 
 import java.sql.Date;
 
-public class ReplyDTO {
-    private int replyId;
+public class BoardDTO {
     private int boardId;
     private int userNo;
+    private int categoryId;
+    private String title;
     private String content;
     private Date createdAt;
     private Date updatedAt;
     private char isDeleted;
 
-    public ReplyDTO() {}
-
-    public int getReplyId() {
-        return replyId;
-    }
-
-    public void setReplyId(int replyId) {
-        this.replyId = replyId;
-    }
+    public BoardDTO() {}
 
     public int getBoardId() {
         return boardId;
@@ -35,6 +28,22 @@ public class ReplyDTO {
 
     public void setUserNo(int userNo) {
         this.userNo = userNo;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -71,10 +80,11 @@ public class ReplyDTO {
 
     @Override
     public String toString() {
-        return "ReplyDTO{" +
-                "replyId=" + replyId +
-                ", boardId=" + boardId +
+        return "BoardDTO{" +
+                "boardId=" + boardId +
                 ", userNo=" + userNo +
+                ", categoryId=" + categoryId +
+                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +

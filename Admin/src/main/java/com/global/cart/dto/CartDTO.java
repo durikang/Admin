@@ -1,4 +1,4 @@
-package com.global.cart.model;
+package com.global.cart.dto;
 
 import java.sql.Date;
 

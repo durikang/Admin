@@ -1,33 +1,32 @@
-package com.global.product.model;
+package com.global.board.dto;
 
 import java.sql.Date;
 
-public class ProductReviewDTO {
-    private int reviewId;
-    private int productId;
+public class ReplyDTO {
+    private int replyId;
+    private int boardId;
     private int userNo;
-    private int rating;
-    private String comm;
+    private String content;
     private Date createdAt;
     private Date updatedAt;
     private char isDeleted;
 
-    public ProductReviewDTO() {}
+    public ReplyDTO() {}
 
-    public int getReviewId() {
-        return reviewId;
+    public int getReplyId() {
+        return replyId;
     }
 
-    public void setReviewId(int reviewId) {
-        this.reviewId = reviewId;
+    public void setReplyId(int replyId) {
+        this.replyId = replyId;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getBoardId() {
+        return boardId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setBoardId(int boardId) {
+        this.boardId = boardId;
     }
 
     public int getUserNo() {
@@ -38,20 +37,12 @@ public class ProductReviewDTO {
         this.userNo = userNo;
     }
 
-    public int getRating() {
-        return rating;
+    public String getContent() {
+        return content;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public String getComm() {
-        return comm;
-    }
-
-    public void setComm(String comm) {
-        this.comm = comm;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Date getCreatedAt() {
@@ -80,12 +71,11 @@ public class ProductReviewDTO {
 
     @Override
     public String toString() {
-        return "ProductReviewDTO{" +
-                "reviewId=" + reviewId +
-                ", productId=" + productId +
+        return "ReplyDTO{" +
+                "replyId=" + replyId +
+                ", boardId=" + boardId +
                 ", userNo=" + userNo +
-                ", rating=" + rating +
-                ", comm='" + comm + '\'' +
+                ", content='" + content + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", isDeleted=" + isDeleted +

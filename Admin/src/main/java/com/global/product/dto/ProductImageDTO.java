@@ -1,4 +1,4 @@
-package com.global.product.model;
+package com.global.product.dto;
 
 //ProductImageDTO.java
 public class ProductImageDTO {

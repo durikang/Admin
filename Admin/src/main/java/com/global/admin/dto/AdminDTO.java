@@ -1,4 +1,4 @@
-package com.global.admin.model;
+package com.global.admin.dto;
 
 public class AdminDTO {
     private int adminId;
