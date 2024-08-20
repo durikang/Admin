@@ -7,13 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.global.action.Action;
+import com.global.action.View;
 import com.global.customer.model.CustomerDAO;
 import com.global.customer.model.CustomerDTO;
 
 public class InsertCustomerAction implements Action {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public View execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		String id = request.getParameter("memId").trim();
 		String name = request.getParameter("memName").trim();

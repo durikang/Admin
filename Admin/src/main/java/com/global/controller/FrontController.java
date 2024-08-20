@@ -1,79 +1,65 @@
 package com.global.controller;
 
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.utils.RequestUtils;
 import com.global.action.Action;
-import com.global.customer.controller.CheckIdDuplicateAction;
-import com.global.customer.controller.DeleteCustomerAction;
-import com.global.customer.controller.DetailCustomerAction;
-import com.global.customer.controller.InsertCustomerAction;
-import com.global.customer.controller.ListCustomerAction;
-import com.global.customer.controller.MainAction;
-import com.global.customer.controller.UpdateCustomerAction;
-import com.global.customer.controller.UpdateOkCustomerAction;
+import com.global.action.ActionFactory;
+import com.global.action.View;
 
 public class FrontController extends HttpServlet {
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1934459167346141964L;
 
-	private Map<String,Action> controllerMap  = new HashMap<>();
-	
-	public FrontController() {
-		/*
-		   main
-		*/		
-		controllerMap.put("main.go", new MainAction());
-		/*
-		 * customer
-		*/
-		controllerMap.put("mlist.go", new ListCustomerAction());
-		controllerMap.put("checkIdDuplicate.go", new CheckIdDuplicateAction());
-		controllerMap.put("insertCustomer.do", new InsertCustomerAction());
-		controllerMap.put("detail.do", new DetailCustomerAction());
-		controllerMap.put("update.do", new UpdateCustomerAction());
-		controllerMap.put("updateOk.do", new UpdateOkCustomerAction());
-		controllerMap.put("delete.do", new DeleteCustomerAction());
-	}
-	
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 한글 처리 작업 진행
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
 
-		//  getRequestURI() : "/프로젝트명/파일명(*.do)" 라는 문자열을 반환해 주는 메서드.
-		String uri = request.getRequestURI();
-		/* System.out.println("uri >>>>>" + uri); */
-		System.out.println("uri >>>>>" + uri);
-		// getContextPath() : 현재 프로젝트명을 문자열로 반환해주는 메소드
-		String path = request.getContextPath();
-		/* System.out.println("Path >>>>" + path); */
+		Properties prop = new Properties();
 		
-		String command = uri.substring(path.length()+1);
-		/* System.out.println("command >>>" + command); */
+		String fileName = FrontController.class.getResource("/com/common/mapping/mapping.properties").getPath();
 		
-		Action action = controllerMap.get(command);
-		
-		if(action == null) {
-			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			return;
+		prop.load(new FileReader(fileName));
+		// URI와 커맨드를 추출
+		String uri = RequestUtils.extractUri(request);
+		String command = RequestUtils.extractCommand(uri, request.getContextPath());
+
+		// 커맨드에 해당하는 클래스 이름을 가져온다.
+		String namePath = prop.getProperty(command);
+
+		System.out.println("Command: " + command);
+		System.out.println("NamePath: " + namePath);
+		View view = null;
+		if (namePath.endsWith(".jsp")) {
+			// 비즈니스 로직 메서드 호출 및 결과 처리
+			view = new View(namePath);
+		} else {
+			// 동적으로 클래스 로딩 및 인스턴스 생성
+			Action action = ActionFactory.createActionInstance(namePath);
+
+			if (action == null) {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+				return;
+			}
+
+			// 비즈니스 로직 메서드 호출 및 결과 처리
+			view = action.execute(request, response);
 		}
-		
-		String view = action.execute(request, response);
-		if(view != null) {
-			request.getRequestDispatcher(view).forward(request, response);
+
+		if (view != null) {
+			view.render(request, response);
 		}
+
 	}
-	
-	
 }

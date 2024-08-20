@@ -7,12 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.global.action.Action;
+import com.global.action.View;
 import com.global.customer.model.CustomerDAO;
 
 public class DeleteCustomerAction implements Action {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public View execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		int num = Integer.parseInt(request.getParameter("no"));
     	int check = CustomerDAO.getInstance().deleteStudent(num);

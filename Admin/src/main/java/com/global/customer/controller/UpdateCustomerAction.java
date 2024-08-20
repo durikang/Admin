@@ -6,13 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.global.action.Action;
+import com.global.action.View;
 import com.global.customer.model.CustomerDAO;
 import com.global.customer.model.CustomerDTO;
 
 public class UpdateCustomerAction implements Action {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public View execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
         String status = request.getParameter("status"); // 체크박스에서 선택한 상태
@@ -34,7 +35,7 @@ public class UpdateCustomerAction implements Action {
 		request.setAttribute("currentPage", currentPage);
 		
 		request.setAttribute("url", "/views/member/customerUpdate.jsp");
-		return "main.go";
+		return new View("main.go");
 	}
 
 }
