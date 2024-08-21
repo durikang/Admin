@@ -99,8 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <th>회원명</th>
                 <td><input type="text" name="memName" required></td>
             </tr>
-            <tr>
-            <!-- 주석 -->
+            <tr><!-- 변경사항 저장합니다. -->
                 <th>이메일</th>
                 <td>
                     <input type="text" name="emailId" required>@ 
