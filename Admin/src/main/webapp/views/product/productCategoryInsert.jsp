@@ -21,9 +21,9 @@
                 </td>
             </tr>
              <tr>
-                <th>카테고리</th>
+                <th>카테고리 정보</th>
                 <td>
-                    <input type="text" name="memId" required>
+                    <textarea rows="1" cols="7"></textarea>
                 </td>
             </tr>
             

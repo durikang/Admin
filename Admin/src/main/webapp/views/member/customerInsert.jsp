@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td><input type="text" name="memName" required></td>
             </tr>
             <tr>
+            <!-- 주석 -->
                 <th>이메일</th>
                 <td>
                     <input type="text" name="emailId" required>@ 
