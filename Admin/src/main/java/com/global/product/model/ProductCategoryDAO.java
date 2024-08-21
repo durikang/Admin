@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -28,7 +30,7 @@ public class ProductCategoryDAO {
 		if (instance == null) {
 			instance = new ProductCategoryDAO();
 		}
-		return null;
+		return instance;
 	}
 
 	
@@ -108,31 +110,23 @@ public class ProductCategoryDAO {
 	// 카테고리 등록 메서드
 	public int insertCategory(ProductCategoryDTO dto) {
 		
-		int result = 0, count = 0;
+		int result = 0;
 		
 		try {
 		
 		openConn();
 		
-		sql = "SELECT MAX(CATEGORY_ID) FROM CATEGORY";
+		sql = "INSERT INTO PRODUCT_CATEGORY VALUES(?,?,?)";
 		
 		pstmt = con.prepareStatement(sql);
 		
-		rs = pstmt.executeQuery();
-		
-		if(rs.next()) {
-			count = rs.getInt(1) + 1;
-		}
-		
-		sql = "INSERT INTO CATEGORY VALUES(?,?,?)";
-		
-		pstmt = con.prepareStatement(sql);
-		
-		pstmt.setInt(1, count);
+		pstmt.setString(1, dto.getCategoryId());
 		pstmt.setString(2, dto.getName());
 		pstmt.setString(3, dto.getDescription());
 		
 		result = pstmt.executeUpdate();
+		
+		
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -140,11 +134,47 @@ public class ProductCategoryDAO {
 		
 		
 		} finally {
+			closeConn(pstmt, con);
+		}
+		
+		return result;
+	} // 카테고리 등록 종료
+
+
+	public List<ProductCategoryDTO> getCategoryList() {
+
+		List<ProductCategoryDTO> list = new ArrayList<ProductCategoryDTO>();
+		
+		try {
+
+		openConn();
+		
+		sql = "SELECT * FROM PRODUCT_CATEGORY";
+		
+		pstmt = con.prepareStatement(sql);
+		
+		rs = pstmt.executeQuery();
+		
+		while (rs.next()) {
+			
+			ProductCategoryDTO dto = new ProductCategoryDTO();
+			
+			dto.setCategoryId(rs.getString("categoryId"));
+			dto.setName(rs.getString("name"));
+			dto.setDescription(rs.getString("description"));
+			
+			list.add(dto);
+		}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
 			closeConn(rs, pstmt, con);
 		}
 		
 		
-		return result;
-	} // 카테고리 등록 종료
+		return list;
+	}
 
 }

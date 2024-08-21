@@ -16,11 +16,13 @@ public class InsertCategoryAction implements Action {
 	@Override
 	public View execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
+		String id = request.getParameter("cateId").trim();
 		String name = request.getParameter("cateName").trim();
 		String description = request.getParameter("cateInfo").trim();
 		
 		ProductCategoryDTO dto = new ProductCategoryDTO();
 		
+		dto.setCategoryId(id);
 		dto.setName(name);
 		dto.setDescription(description);
 		
@@ -33,7 +35,7 @@ public class InsertCategoryAction implements Action {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('카테고리 추가 성공')");
-			out.println("location.href='bbs_list.go'");
+			out.println("location.href='productCategoryList.li'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
