@@ -38,7 +38,7 @@ public class InsertCustomerAction implements Action {
 		if(check>0) {
 			out.println("<script>");
 			out.println("alert('고객 정보 입력 성공!!!')");
-			out.println("location.href='mlist.go'");
+			out.println("location.href='customerList.li'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
