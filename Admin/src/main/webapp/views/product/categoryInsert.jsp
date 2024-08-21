@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>카테고리 등록</title>
+<link href="${contextPath }/resources/product/css/categoryInsert.css" rel ="stylesheet" type="text/css"/>
 </head>
 <body>
 	<div align="center">
@@ -17,16 +18,21 @@
             <tr>
                 <th>카테고리 이름</th>
                 <td>
-                    <input type="text" name="memId" required>
+                    <input type="text" name="cateName" required>
                 </td>
             </tr>
              <tr>
                 <th>카테고리 정보</th>
                 <td>
-                    <textarea rows="1" cols="7"></textarea>
+                    <textarea rows="8" cols="22" name="cateInfo"></textarea>
                 </td>
             </tr>
-            
+                        <tr>
+                <td class="table_bottom button categoryInsertBtn" colspan="2">
+                    <input class="btn" type="submit" value="카테고리 등록">
+                    <input class="btn" type="reset" value="초기화">
+                </td>
+            </tr>
          </table>
      </form>
      </div>

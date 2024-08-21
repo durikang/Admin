@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/*
+	categoryInsert.css
+
+*/
+
+
+/* 테이블 셀 크기에 맞게 입력 필드 조정 */
+.insertTableForm {
+    width: 20%;
+    border-collapse: collapse;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.categoryInsertBtn{
+	text-align: center;
+	
+}

@@ -1,17 +1,17 @@
 package com.global.product.model;
 
 public class ProductCategoryDTO {
-    private int categoryId;
+    private String categoryId;
     private String name;
     private String description;
 
     public ProductCategoryDTO() {}
 
-    public int getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -31,12 +31,4 @@ public class ProductCategoryDTO {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "ProductCategoryDTO{" +
-                "categoryId=" + categoryId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }
