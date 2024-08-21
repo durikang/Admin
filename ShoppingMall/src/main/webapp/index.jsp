@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>쇼핑몰 관리자 페이지</title>
+<title>쇼핑몰 페이지</title>
 </head>
 <body>
 <script type="text/javascript">
@@ -16,10 +16,9 @@
 	window.onload = function(){
 		location.href="${contextPath}/main.go";
 	}
-
-	/* 
-	hihi
-	 */
+/* 
+	20240821
+ */	
 
 </script>
 </body>

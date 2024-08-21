@@ -1,0 +1,566 @@
+@charset "UTF-8";
+
+:root {  
+	--color-01: #45413E;
+    --color-02: #F9F9F9;
+    --color-03: #DB7F67;
+    --color-04: #F4CFC6;
+    --card-hover: 0px 4px 24px rgba(0, 0, 0, 0.15);
+    --card-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    --nav-card-size: 240px;
+    
+    scroll-behavior: smooth;
+
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	background: var(--color-02);
+	width: 100vw;
+	overflow-x: hidden;
+}
+
+.card-large, .card-med {
+	/*    border: 1px solid orange;*/
+	flex: 1;
+	/*    width: var(--nav-card-size);*/
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	/*    padding: 24px;*/
+	cursor: pointer;
+}
+
+.card-large {
+	box-shadow: var(--card-shadow);
+	border-radius: 12px;
+	overflow: hidden;
+	/*    padding-bottom: 32px;*/
+}
+
+.card-large:hover {
+	box-shadow: var(--card-hover);
+	transform: scale(1.01);
+}
+
+.card-med:hover .card-image {
+	transform: scale(1.01);
+}
+
+.card-image {
+	width: 100%;
+	/*    height: 90%;*/
+	aspect-ratio: 1/1;
+	position: relative;
+	border-radius: 12px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.card-large>.card-image {
+	aspect-ratio: 3/2;
+}
+
+.card-image>img {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	object-fit: contain;
+}
+
+.card-large a {
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.card-large>.card-image>a {
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+	width: 100%;
+	font-size: 24px;
+	line-height: 1.2;
+}
+
+.card-large>ul {
+	/*    padding: 16px 0 24px;*/
+	display: flex;
+	flex-direction: column;
+	grid-gap: 8px;
+	flex: 1;
+	/*    border: 1px solid blue;*/
+	color: var(--color-01);
+	padding: 0 40px 40px;
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.card-large>ul>li a {
+	line-height: 32px;
+	font-size: 14px;
+	/*    border: 1px solid red;*/
+}
+
+.main_bodytext {
+	font-size: 28px;
+    font-weight: 600;
+    line-height: 1.5;
+	
+}
+button.btn-outline {
+	color: var(--color-02);
+	border-color: var(--color-02);
+}
+
+.card-large.card-dark a, .card-large.card-dark>ul {
+	color: var(--color-01);
+}
+
+.card-large.card-light a, .card-large.card-light>ul {
+	color: var(--color-02);
+}
+
+button {
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 24px;
+	padding: 12px 24px;
+	border-radius: 48px;
+	display: flex;
+	flex-direction: row;
+	grid-gap: 8px;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+button.btn-outline-light {
+	color: var(--color-02);
+	background: none;
+	color: var(--color-02);
+	border: 2px solid var(- -color-02);
+}
+
+button.main_bodybutton{
+	margin: 10%;
+}
+
+button.btn-outline-dark {
+	color: var(--color-01);
+	background: none;
+	color: var(--color-01);
+	border: 2px solid var(- -color-01);
+	
+}
+
+button.btn-filled-dark {
+	color: var(--color-02);
+	background: var(--color-01);
+	color: var(--color-02);
+	border: 2px solid var(--color-01);
+}
+
+.btn-outline-dark:hover {
+	background: var(--color-01);
+	border: 2px solid var(--color-01);
+}
+
+.btn-outline-light:hover {
+	background: var(--color-02);
+	border: 2px solid var(--color-02);
+	color: var(--color-01);
+}
+
+button:hover, .btn-outline-dark.btn-hover-color:hover {
+	color: var(--color-02);
+	border: 2px solid var(--color-03);
+	background: var(--color-03);
+	box-shadow: var(--card-hover);
+}
+
+section, footer {
+	position: relative;
+	width: 100%;
+	padding: 0 var(--pg-margin);
+}
+
+section.hero {
+	/*    width: 100%;*/
+	/* 가운데 제일 큰 사진 */
+	height: auto;
+	background: var(--color-04) url('') no-repeat center right;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	grid-gap: 48px;
+	display: inline-flex;
+}
+
+.btn-group {
+	display: flex;
+	flex-direction: row;
+	grid-gap: 16px;
+}
+
+section.hero h1 {
+	font-size: var(--hero-text);
+	font-weight: 600;
+	line-height: 1.2;
+	width: 40%;
+	color: var(--color-01);
+}
+
+.card-med {
+	width: var(--nav-card-size);
+	height: auto;
+	/*    border: 1px solid green;*/
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+}
+
+.card-med>a {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 4px;
+	padding: 12px 16px 0px;
+}
+
+.card-med>a>span {
+	width: 100%;
+	/*    border: 1px solid blue;*/
+}
+
+.card-med>a>span:nth-of-type(1) {
+	width: 100%;
+	/*    border: 1px solid blue;*/
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.card-med>a>span:nth-of-type(2) {
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 24px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	grid-gap: 6px;
+}
+
+.card-med>a>span:nth-of-type(2)>span {
+	font-size: 18px;
+}
+
+.card-med:hover .card-image {
+	box-shadow: var(--card-hover);
+}
+
+.card-med>.card-image {
+	box-shadow: var(--card-shadow);
+}
+
+.card-med>.card-image>img {
+	width: 80%;
+	height: 80%;
+	/*    border: 1px solid red;*/
+}
+
+section:not(.hero) {
+	padding: calc(var(--pg-margin)/2) var(--pg-margin);
+}
+
+section h2 {
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 1.2;
+	text-align: center;
+	color: var(--color-01);
+	margin-bottom: 32px;
+	/*    padding-bottom: 24px;*/
+}
+
+
+.card-image img {
+	width: 80%;
+	height: 80%;
+}
+.card-large>ul>li:last-of-type {
+	margin-bottom: 40px;
+}
+
+.card-large button {
+	margin-top: auto;
+}
+
+#locate>div {
+	background: var(--color-02);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 80px 0;
+	border: 1px solid;
+	border-color: #ebecef;
+	border-radius: 12px;
+	box-shadow: var(--card-shadow);
+	cursor: pointer;
+}
+
+#locate>div:hover {
+	box-shadow: var(--card-hover);
+}
+
+#locate h2 {
+	margin-top: 0;
+}
+
+.btn-group {
+	display: flex;
+	flex-direction: row;
+	grid-gap: 16px;
+}
+
+
+
+        @media only screen and (max-width: 600px) {
+            :root {
+                --pg-margin: 16px;
+            }
+
+            section.hero {
+                aspect-ratio: 1/1;
+                padding-top: 64px;
+
+            }
+
+            section.hero h1 {
+                --hero-text: 40px;
+                width: 80%;
+            }
+
+            section.hero {
+                background-size: 85%;
+                background-position: 360% 60%;
+            }
+
+            
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .shop-pets{
+                display: flex;
+                flex-direction: column;
+                grid-gap: 24px;
+                width: 100%;
+            }
+
+            
+
+            section:not(.hero) {
+                padding: var(--pg-margin);
+            }
+
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+
+        }
+
+        @media only screen and (min-width: 600px) {
+            :root {
+                --pg-margin: 24px;
+            }
+
+            section.hero h1 {
+                --hero-text: 40px;
+                width: 60%;
+            }
+
+            section.hero {
+                aspect-ratio: 3/2;
+                background-size: 50%;
+                background-position: 90% 70%;
+                padding-top: 64px;
+
+            }
+
+           
+
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .shop-pets {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-row: auto auto;
+                grid-column-gap: 24px;
+                grid-row-gap: 24px;
+            }
+
+            
+
+            section:not(.hero) {
+                padding: var(--pg-margin);
+            }
+
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media only screen and (min-width: 1200px) {
+            :root {
+                --pg-margin: 48px;
+            }
+
+            section.hero h1 {
+                --hero-text: 48px;
+            }
+
+            section.hero {
+                aspect-ratio: 2/1;
+
+            }
+
+            .btn-group {
+                flex-direction: row;
+            }
+
+            .shop-pets{
+                display: flex;
+                flex-direction: row;
+                grid-gap: 24px;
+            }
+
+           
+            footer {
+
+
+                flex-direction: row;
+                text-align: left;
+
+            }
+        }
+
+        /* Extra large devices (large laptops and desktops, 1200px and up) */
+        @media only screen and (min-width: 1200px) {
+            :root {
+                --pg-margin: 80px;
+            }
+
+            section.hero h1 {
+                --hero-text: 56px;
+            }
+
+        
+
+            section.hero {
+                aspect-ratio: 3/1;
+                background-size: 30%;
+                background-position: 90% 60%;
+            }
+
+            .shop-pets{
+                display: flex;
+                flex-direction: row;
+                grid-gap: 24px;
+            }
+
+          
+
+
+        }
+
+.shopping-imo {
+	margin-top: 5px;
+	margin-left: -5px;
+	width: 19px;
+	height: 19px;
+}
+
+.next-button {
+	text-decoration: none;
+	color: var(--color-01);
+}
+
+.back-button {
+	text-decoration: none;
+	color: var(--color-02);
+}
+
+
+/* 기존 CSS와 충돌 방지를 위해 추가된 부분입니다 */
+
+/* 버튼 스타일 */
+a.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    border-radius: 48px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    grid-gap: 8px;
+}
+
+/* 어두운 배경에 흰색 텍스트 */
+.btn-filled-dark {
+    background-color: var(--color-01);
+    color: var(--color-02);
+    border: 2px solid var(--color-01);
+}
+
+.btn-filled-dark:hover {
+    background-color: var(--color-03);
+    border-color: var(--color-03);
+    box-shadow: var(--card-hover);
+}
+
+/* 흰색 배경에 어두운 텍스트 */
+.btn-outline-dark {
+    background: none;
+    color: var(--color-01);
+    border: 2px solid var(--color-01);
+}
+
+.btn-outline-dark:hover {
+    background-color: var(--color-03);
+    color: var(--color-02);
+    border-color: var(--color-03);
+    box-shadow: var(--card-hover);
+}
+
+/* 추가된 백/넥스트 버튼 스타일 */
+.back-button {
+    color: var(--color-02);
+}
+
+.next-button {
+    color: var(--color-01);
+}
