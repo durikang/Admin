@@ -10,29 +10,18 @@ public class View {
 	private boolean isRedirect; // true
 
 	private String viewPath;
-
+	HttpServletRequest request;
+	private String url;
+	
+	
 	public View() {
 		
 	}
-	
-	
-	
-	public String getViewPath() {
-		return viewPath;
-	}
-
-
-
-	public void setViewPath(String viewPath) {
-		this.viewPath = viewPath;
-	}
-
-
 
 	public View(String viewPath) {
 
 		if(viewPath.endsWith(".jsp")) {
-			this.viewPath = viewPath;
+			this.viewPath =  viewPath;
 		}else {
 			this.viewPath = viewPath;
 		}
@@ -48,13 +37,40 @@ public class View {
 		this.isRedirect = isRedirect;
 		return this;
 	}
+	public View setUrl(String url) {
+		this.url = url;
+		return this;
+	}
 
 	public View render(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (this.isRedirect) { // true일 경우 redirect
 			response.sendRedirect(this.viewPath);
 		} else { // false일 경우 forwarding
-			request.getRequestDispatcher(viewPath).forward(request, response);
+			if(viewPath.equals("views/main.jsp")&&viewPath.endsWith(".jsp")) {
+				request.getRequestDispatcher(this.viewPath).forward(request, response);
+			}
+			else if(viewPath.endsWith(".jsp")) {
+				request.setAttribute("url", "/"+this.viewPath);
+				request.getRequestDispatcher("views/main.jsp").forward(request, response);								
+			}else {
+				request.setAttribute("url", this.url);
+				request.getRequestDispatcher(this.viewPath).forward(request, response);				
+			}
+		
 		}
 		return this;
+	}
+	
+	
+
+	public String getViewPath() {
+		return viewPath;
+	}
+
+
+
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
 	}
 }

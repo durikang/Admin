@@ -30,7 +30,7 @@
     }
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '${contextPath}/customerCheckIdDuplicate.do', true);
+    xhr.open('POST', '${contextPath}/adminCheckIdDuplicate.go', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function() {
@@ -73,17 +73,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	<div align="center">
     <h3>회원 등록</h3>
 
-    <form action="${ contextPath }/customerInsert.do" method="post" onsubmit="return validatePasswords()">
+    <form action="${ contextPath }/insertCustomer.do" method="post" onsubmit="return validatePasswords()">
         <table class="insertTableForm">
             <tr>
-                <th>회원 아이디</th>
+                <th>관리자 아이디</th>
                 <td>
-                    <input type="text" name="memId" required>
+                    <input type="text" name="adminId" required>
                 </td>
             </tr>
             <tr>
                 <th>비밀번호</th>
-                <td><input type="password" name="pwd" id="pwd" required></td>
+                <td><input type="password" name="adminPwd" id="pwd" required></td>
             </tr>
             <tr>
                 <th>비밀번호 확인</th>
@@ -96,8 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <table class="insertTableForm">
             <tr>
-                <th>회원명</th>
-                <td><input type="text" name="memName" required></td>
+                <th>관리자명</th>
+                <td><input type="text" name="adminName" required></td>
             </tr>
             <tr>
                 <th>이메일</th>
@@ -113,25 +113,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 </td>
             </tr>
             <tr>
-                <th>나이</th>
-                <td><input type="number" name="age" min="1" max="120" required></td>
-            </tr>
-            <tr>
-                <th>직업</th>
+                <th>역활</th>
                 <td>
-                    <select name="job" required>
-                        <option value="학생">학생</option>
-                        <option value="직장인">직장인</option>
-                        <option value="프리랜서">프리랜서</option>
-                        <option value="기타">기타</option>
+                    <select name="emailDomain" id="emailDomain" required onchange="checkEmailDomain()">
+                        <option value="naver.com">naver.com</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="other">기타</option>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <th>주소</th>
-                <td>
-                    <input class="btn" type="text" name="addr" id="addr" required>
-                    <input class="btn" type="button" value="주소 검색" onclick="execDaumPostcode()">
                 </td>
             </tr>
             <tr>

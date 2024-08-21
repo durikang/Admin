@@ -16,7 +16,9 @@ public class CheckIdDuplicateAction implements Action {
 
 	  @Override
 	    public View execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-	        String memId = request.getParameter("memId");
+	        
+		  
+		  String memId = request.getParameter("memId");
 	        boolean isDuplicate = CustomerDAO.getInstance().checkDuplicateId(memId);
 	        
 	        // JSON 응답 설정

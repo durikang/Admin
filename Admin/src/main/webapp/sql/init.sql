@@ -12,7 +12,6 @@ DROP TABLE ORDERS CASCADE CONSTRAINTS;                               -- 주문 �
 DROP TABLE PAYMENT CASCADE CONSTRAINTS;                              -- 결제 관리 테이블 삭제
 DROP TABLE SHIPMENT CASCADE CONSTRAINTS;                             -- 배송 관리 테이블 삭제
 DROP TABLE ADMIN_ROLE CASCADE CONSTRAINTS;                           -- 관리자 역할 관리 테이블 삭제
-DROP TABLE ROLE CASCADE CONSTRAINTS;                                 -- 역할 관리 테이블 삭제
 DROP TABLE ADMIN CASCADE CONSTRAINTS;                                -- 관리자 계정 관리 테이블 삭제
 DROP TABLE CUSTOMER CASCADE CONSTRAINTS;                             -- 회원 정보 관리 테이블 삭제
 
@@ -42,8 +41,14 @@ CREATE TABLE ADMIN (
     PASSWORD VARCHAR2(100) NOT NULL,                -- 관리자 비밀번호
     NAME VARCHAR2(100) NOT NULL,                    -- 관리자 이름
     EMAIL VARCHAR2(100),                            -- 관리자 이메일 주소
-    ROLE VARCHAR2(50),                              -- 관리자 역할
     IS_DELETED CHAR(1) DEFAULT 'N' CHECK (IS_DELETED IN ('Y', 'N'))                  -- 관리자 계정 삭제 여부 (Default: N)
+);
+
+CREATE TABLE ADMIN_ROLL (
+    ROLL_CODE VARCHAR2(100) PRIMARY KEY,             -- 역할 코드 (Primary Key)
+    ROLL_NAME VARCHAR2(100) NOT NULL,                -- 역할 이름
+    ADMIN_ID NUMBER,                                 -- 관리자의 ID
+    FOREIGN KEY (ADMIN_ID) REFERENCES ADMIN(ADMIN_ID) -- 관리자 테이블의 외래 키 참조
 );
 
 -- 게시판 카테고리를 관리하는 테이블

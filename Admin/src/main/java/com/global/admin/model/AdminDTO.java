@@ -1,4 +1,4 @@
-package com.global.admin.dto;
+package com.global.admin.model;
 
 public class AdminDTO {
     private int adminId;
@@ -6,7 +6,6 @@ public class AdminDTO {
     private String password;
     private String name;
     private String email;
-    private String role;
     private char isDeleted;
 
     public AdminDTO() {}
@@ -51,14 +50,6 @@ public class AdminDTO {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public char getIsDeleted() {
         return isDeleted;
     }
@@ -67,16 +58,4 @@ public class AdminDTO {
         this.isDeleted = isDeleted;
     }
 
-    @Override
-    public String toString() {
-        return "AdminDTO{" +
-                "adminId=" + adminId +
-                ", userId='" + userId + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                ", isDeleted=" + isDeleted +
-                '}';
-    }
 }

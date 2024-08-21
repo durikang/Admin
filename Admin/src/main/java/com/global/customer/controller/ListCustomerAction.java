@@ -72,8 +72,7 @@ public class ListCustomerAction implements Action {
         request.setAttribute("sort", sort); // 정렬 상태를 JSP로 전달
         
         // 뷰 페이지로 이동
-        request.setAttribute("url", "/views/member/customerList.jsp");
-        return new View("main.go");
+        return new View("main.go").setUrl("/views/member/customerList.jsp");
     }
 }
 

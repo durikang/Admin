@@ -43,7 +43,7 @@ public class FrontController extends HttpServlet {
 		View view = null;
 		if (namePath.endsWith(".jsp")) {
 			// 비즈니스 로직 메서드 호출 및 결과 처리
-			view = new View(namePath);
+			view = new View(namePath).setUrl(namePath);
 		} else {
 			// 동적으로 클래스 로딩 및 인스턴스 생성
 			Action action = ActionFactory.createActionInstance(namePath);

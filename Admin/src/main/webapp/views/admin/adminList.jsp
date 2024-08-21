@@ -24,7 +24,7 @@ function goToDetailPage(event) {
     const userNo = target.getAttribute('data-id');
     if (userNo) {
         /* window.location.href = '${contextPath}/detail.do?no=' + userNo + '&status='+${status}+'&currentPage='+${pi.currentPage}; */
-        window.location.href = '${contextPath}/customerDetail.do?no=' + userNo + '&status=' + '${status}' + '&currentPage=' + '${pi.currentPage}';
+        window.location.href = '${contextPath}/detail.do?no=' + userNo + '&status=' + '${status}' + '&currentPage=' + '${pi.currentPage}';
     }
 }
 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <button class="filter-button" onclick="toggleFilter()">필터</button>
 
 	<div class="form-container" id="filterForm">
-	    <form method="get" action="${contextPath}/customerList.go">
+	    <form method="get" action="${contextPath}/mlist.go">
 	        <label>
 	            <input type="checkbox" name="status" value="N" <c:if test="${param.status == 'N'}">checked</c:if>>
 	            회원
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	    <%--현재 페이지가 1보다 클 때만 "이전" 버튼을 표시합니다.
 	        버튼 클릭 시 currentPage를 1 감소시켜 이전 페이지로 이동합니다. --%>
 	    <c:if test="${pi.currentPage > 1}">
-	        <a href="${contextPath}/customerList.go?currentPage=${pi.currentPage - 1}&status=${param.status}" class="pagination-button">이전</a>
+	        <a href="${contextPath}/mlist.go?currentPage=${pi.currentPage - 1}&status=${param.status}" class="pagination-button">이전</a>
 	    </c:if>
 	    
 	    <%-- 페이지 번호 버튼 --%>
@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	                <span class="pagination-button current">${pageNum}</span>
 	            </c:when>
 	            <c:otherwise>
-	                <a href="${contextPath}/customerList.go?currentPage=${pageNum}&status=${param.status}" class="pagination-button">${pageNum}</a>
+	                <a href="${contextPath}/mlist.go?currentPage=${pageNum}&status=${param.status}" class="pagination-button">${pageNum}</a>
 	            </c:otherwise>
 	        </c:choose>
 	    </c:forEach>
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	    <%-- 현재 페이지가 maxPage보다 작을 때만 "다음" 버튼을 표시합니다.
 	        버튼 클릭 시 currentPage를 1 증가시켜 다음 페이지로 이동합니다. --%>
 	    <c:if test="${pi.currentPage < pi.maxPage}">
-	        <a href="${contextPath}/customerList.go?currentPage=${pi.currentPage + 1}&status=${param.status}" class="pagination-button">다음</a>
+	        <a href="${contextPath}/mlist.go?currentPage=${pi.currentPage + 1}&status=${param.status}" class="pagination-button">다음</a>
 	    </c:if>
 	</div>
 

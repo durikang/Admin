@@ -1,11 +1,11 @@
-package com.global.product.dto;
+package com.global.board.model;
 
-public class ProductCategoryDTO {
+public class CategoryDTO {
     private int categoryId;
     private String name;
     private String description;
 
-    public ProductCategoryDTO() {}
+    public CategoryDTO() {}
 
     public int getCategoryId() {
         return categoryId;
@@ -33,7 +33,7 @@ public class ProductCategoryDTO {
 
     @Override
     public String toString() {
-        return "ProductCategoryDTO{" +
+        return "CategoryDTO{" +
                 "categoryId=" + categoryId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

@@ -82,13 +82,13 @@
 				</tr>
 				<tr>
 					<td class="table_bottom button" colspan="8" align="center">
-						<input class="btn" type="button" value="회원정보 수정" onclick="location.href='${ contextPath }/customerUpdate.do?no=${mem.userNo}&currentPage=${currentPage}&status=${status}'">&nbsp;&nbsp;
+						<input class="btn" type="button" value="회원정보 수정" onclick="location.href='${ contextPath }/update.do?no=${mem.userNo}&currentPage=${currentPage}&status=${status}'">&nbsp;&nbsp;
 						<c:choose>
 	                        <c:when test="${mem.status == 'N'}">
-	                            <input class="btn" type="button" value="회원정보 삭제" onclick="location.href='${ contextPath }/customerDelete.do?no=${mem.userNo}&currentPage=${currentPage}&status=${status}'">&nbsp;&nbsp;
+	                            <input class="btn" type="button" value="회원정보 삭제" onclick="location.href='${ contextPath }/delete.do?no=${mem.userNo}&currentPage=${currentPage}&status=${status}'">&nbsp;&nbsp;
 	                        </c:when>
 	                    </c:choose>
-						<input class="btn" type="button" value="회원 목록" onclick="location.href='${contextPath}/customerList.go?currentPage=${currentPage}&status=${status}'">
+						<input class="btn" type="button" value="회원 목록" onclick="location.href='${contextPath}/mlist.go?currentPage=${currentPage}&status=${status}'">
 					</td>
 				</tr>
 			</table>

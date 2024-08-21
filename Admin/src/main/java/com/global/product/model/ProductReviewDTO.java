@@ -1,32 +1,33 @@
-package com.global.board.dto;
+package com.global.product.model;
 
 import java.sql.Date;
 
-public class ReplyDTO {
-    private int replyId;
-    private int boardId;
+public class ProductReviewDTO {
+    private int reviewId;
+    private int productId;
     private int userNo;
-    private String content;
+    private int rating;
+    private String comm;
     private Date createdAt;
     private Date updatedAt;
     private char isDeleted;
 
-    public ReplyDTO() {}
+    public ProductReviewDTO() {}
 
-    public int getReplyId() {
-        return replyId;
+    public int getReviewId() {
+        return reviewId;
     }
 
-    public void setReplyId(int replyId) {
-        this.replyId = replyId;
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
     }
 
-    public int getBoardId() {
-        return boardId;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setBoardId(int boardId) {
-        this.boardId = boardId;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public int getUserNo() {
@@ -37,12 +38,20 @@ public class ReplyDTO {
         this.userNo = userNo;
     }
 
-    public String getContent() {
-        return content;
+    public int getRating() {
+        return rating;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getComm() {
+        return comm;
+    }
+
+    public void setComm(String comm) {
+        this.comm = comm;
     }
 
     public Date getCreatedAt() {
@@ -71,11 +80,12 @@ public class ReplyDTO {
 
     @Override
     public String toString() {
-        return "ReplyDTO{" +
-                "replyId=" + replyId +
-                ", boardId=" + boardId +
+        return "ProductReviewDTO{" +
+                "reviewId=" + reviewId +
+                ", productId=" + productId +
                 ", userNo=" + userNo +
-                ", content='" + content + '\'' +
+                ", rating=" + rating +
+                ", comm='" + comm + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", isDeleted=" + isDeleted +

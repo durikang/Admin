@@ -1,33 +1,25 @@
-package com.global.product.dto;
+package com.global.board.model;
 
 import java.sql.Date;
 
-public class ProductReviewDTO {
-    private int reviewId;
-    private int productId;
+public class BoardDTO {
+    private int boardId;
     private int userNo;
-    private int rating;
-    private String comm;
+    private int categoryId;
+    private String title;
+    private String content;
     private Date createdAt;
     private Date updatedAt;
     private char isDeleted;
 
-    public ProductReviewDTO() {}
+    public BoardDTO() {}
 
-    public int getReviewId() {
-        return reviewId;
+    public int getBoardId() {
+        return boardId;
     }
 
-    public void setReviewId(int reviewId) {
-        this.reviewId = reviewId;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setBoardId(int boardId) {
+        this.boardId = boardId;
     }
 
     public int getUserNo() {
@@ -38,20 +30,28 @@ public class ProductReviewDTO {
         this.userNo = userNo;
     }
 
-    public int getRating() {
-        return rating;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getComm() {
-        return comm;
+    public String getTitle() {
+        return title;
     }
 
-    public void setComm(String comm) {
-        this.comm = comm;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Date getCreatedAt() {
@@ -80,12 +80,12 @@ public class ProductReviewDTO {
 
     @Override
     public String toString() {
-        return "ProductReviewDTO{" +
-                "reviewId=" + reviewId +
-                ", productId=" + productId +
+        return "BoardDTO{" +
+                "boardId=" + boardId +
                 ", userNo=" + userNo +
-                ", rating=" + rating +
-                ", comm='" + comm + '\'' +
+                ", categoryId=" + categoryId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", isDeleted=" + isDeleted +

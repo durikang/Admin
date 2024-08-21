@@ -18,7 +18,7 @@
 <body>
 	<div align="center">
 		<h3>${ member.name } 의 상세 페이지 </h3>
-			<form action="customerUpdateOk.do" method="post" onsubmit="return validatePassword();">
+			<form action="updateOk.do" method="post" onsubmit="return validatePassword();">
 				<input type="hidden" name="num" value="${ member.userNo }">
 				<table class="insertTableForm" border="1">
 					<tr>

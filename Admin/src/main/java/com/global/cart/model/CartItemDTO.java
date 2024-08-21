@@ -1,4 +1,4 @@
-package com.global.cart.dto;
+package com.global.cart.model;
 
 public class CartItemDTO {
  private int cartItemId;

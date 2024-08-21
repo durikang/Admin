@@ -15,7 +15,8 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>FrontController</servlet-name>
-    <url-pattern>*.do</url-pattern>
-    <url-pattern>*.go</url-pattern>
+    <url-pattern>*.do</url-pattern><!-- dao를 거치는 행위  -->
+    <url-pattern>*.go</url-pattern><!-- jsp   -->
+    <url-pattern>*.li</url-pattern><!-- 리스트값을 가져올때 -->
   </servlet-mapping>
 </web-app>
