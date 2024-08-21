@@ -11,7 +11,7 @@ DROP TABLE ORDER_ITEM CASCADE CONSTRAINTS;                           -- 주문 �
 DROP TABLE ORDERS CASCADE CONSTRAINTS;                               -- 주문 관리 테이블 삭제
 DROP TABLE PAYMENT CASCADE CONSTRAINTS;                              -- 결제 관리 테이블 삭제
 DROP TABLE SHIPMENT CASCADE CONSTRAINTS;                             -- 배송 관리 테이블 삭제
-DROP TABLE ADMIN_ROLE CASCADE CONSTRAINTS;                           -- 관리자 역할 관리 테이블 삭제
+DROP TABLE ADMIN_ROLL CASCADE CONSTRAINTS;                           -- 관리자 역할 관리 테이블 삭제
 DROP TABLE ADMIN CASCADE CONSTRAINTS;                                -- 관리자 계정 관리 테이블 삭제
 DROP TABLE CUSTOMER CASCADE CONSTRAINTS;                             -- 회원 정보 관리 테이블 삭제
 
@@ -44,25 +44,27 @@ CREATE TABLE ADMIN (
     IS_DELETED CHAR(1) DEFAULT 'N' CHECK (IS_DELETED IN ('Y', 'N'))                  -- 관리자 계정 삭제 여부 (Default: N)
 );
 
-CREATE TABLE ADMIN_ROLL (
-    ROLL_CODE VARCHAR2(100) PRIMARY KEY,             -- 역할 코드 (Primary Key)
+CREATE TABLE ADMIN_ROLE (
+    ROLL_CODE VARCHAR2(300) PRIMARY KEY,             -- 역할 코드 (Primary Key)
     ROLL_NAME VARCHAR2(100) NOT NULL,                -- 역할 이름
     ADMIN_ID NUMBER,                                 -- 관리자의 ID
     FOREIGN KEY (ADMIN_ID) REFERENCES ADMIN(ADMIN_ID) -- 관리자 테이블의 외래 키 참조
 );
 
+
 -- 게시판 카테고리를 관리하는 테이블
 CREATE TABLE CATEGORY (
-    CATEGORY_ID NUMBER PRIMARY KEY,                 -- 카테고리 번호 (Primary Key)
+    CATEGORY_ID VARCHAR2(300) PRIMARY KEY,                 -- 카테고리 번호 (Primary Key)
     NAME VARCHAR2(100) NOT NULL,                    -- 카테고리 이름
     DESCRIPTION VARCHAR2(255)                       -- 카테고리 설명
 );
+
 
 -- 게시판 게시글을 관리하는 테이블
 CREATE TABLE BOARD (
     BOARD_ID NUMBER PRIMARY KEY,                              -- 게시글 번호 (Primary Key)                 
     USER_NO NUMBER,                                           -- 게시글 작성자 (CUSTOMER 테이블 참조)
-    CATEGORY_ID NUMBER,                                       -- 게시글 카테고리 (CATEGORY 테이블 참조)
+    CATEGORY_ID VARCHAR2(300),                                       -- 게시글 카테고리 (CATEGORY 테이블 참조)
     TITLE VARCHAR2(200) NOT NULL,                             -- 게시글 제목
     CONTENT CLOB,                                             -- 게시글 내용
     CREATED_AT DATE DEFAULT SYSDATE,                          -- 게시글 작성일
@@ -87,15 +89,16 @@ CREATE TABLE REPLY (
 
 -- 상품 카테고리를 관리하는 테이블
 CREATE TABLE PRODUCT_CATEGORY (
-    CATEGORY_ID NUMBER PRIMARY KEY,                         -- 상품 카테고리 번호 (Primary Key)
+    CATEGORY_ID VARCHAR2(300) PRIMARY KEY,                         -- 상품 카테고리 번호 (Primary Key)
     NAME VARCHAR2(100) NOT NULL,                            -- 상품 카테고리 이름
     DESCRIPTION VARCHAR2(255)                               -- 상품 카테고리 설명
 );
 
+
 -- 상품 정보를 관리하는 테이블
 CREATE TABLE PRODUCT (
     PRODUCT_ID NUMBER PRIMARY KEY,                                      -- 상품 번호 (Primary Key)
-    CATEGORY_ID NUMBER,                                                 -- 상품 카테고리 (PRODUCT_CATEGORY 테이블 참조)
+    CATEGORY_ID VARCHAR2(300),                                                 -- 상품 카테고리 (PRODUCT_CATEGORY 테이블 참조)
     NAME VARCHAR2(100) NOT NULL,                                        -- 상품 이름
     DESCRIPTION CLOB,                                                   -- 상품 설명
     PRICE NUMBER NOT NULL,                                              -- 상품 가격
@@ -108,7 +111,7 @@ CREATE TABLE PRODUCT (
 
 -- 상품 이미지를 관리하는 테이블
 CREATE TABLE PRODUCT_IMAGE (
-    IMAGE_ID NUMBER PRIMARY KEY,                                -- 이미지 번호 (Primary Key)
+    IMAGE_ID VARCHAR2(300) PRIMARY KEY,                                -- 이미지 번호 (Primary Key)
     PRODUCT_ID NUMBER,                                           -- 이미지가 연결된 상품 (PRODUCT 테이블 참조)
     IMAGE_URL VARCHAR2(255) NOT NULL,                           -- 이미지 URL
     DESCRIPTION VARCHAR2(255),                                  -- 이미지 설명
@@ -139,7 +142,7 @@ CREATE TABLE CART (
 
 -- 장바구니에 담긴 상품 항목을 관리하는 테이블
 CREATE TABLE CART_ITEM (
-    CART_ITEM_ID NUMBER PRIMARY KEY,                            -- 장바구니 항목 번호 (Primary Key)
+    CART_ITEM_ID VARCHAR2(300) PRIMARY KEY,                            -- 장바구니 항목 번호 (Primary Key)
     CART_ID NUMBER,                                             -- 해당 장바구니 (CART 테이블 참조)
     PRODUCT_ID NUMBER,                                          -- 장바구니에 담긴 상품 (PRODUCT 테이블 참조)
     QUANTITY NUMBER NOT NULL,                                   -- 상품 수량

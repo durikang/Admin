@@ -16,9 +16,9 @@
 	window.onload = function(){
 		location.href="${contextPath}/main.go";
 	}
-
-	
-	
+/* 
+	20240821
+ */	
 
 </script>
 </body>
