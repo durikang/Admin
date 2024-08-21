@@ -25,18 +25,18 @@
 	 *  중복체크 ajax 관련 로직입니다.
 	 */
 
-	function checkIdDuplicate() {
-		const memId = document.querySelector('input[name="memId"]').value;
+	function checkadminRoleCodeDuplicate() {
+		const roleCode = document.querySelector('input[name="roleCode"]').value;
 		const errorSpan = document.getElementById('id-error');
 
 		// 아이디를 입력하지 않은 경우
-		if (!memId) {
-			errorSpan.textContent = '아이디를 입력해주세요.';
+		if (!roleCode) {
+			errorSpan.textContent = '역활코드를 입력해주세요.';
 			return;
 		}
 
 		const xhr = new XMLHttpRequest();
-		xhr.open('POST', '${contextPath}/adminCheckIdDuplicate.go', true);
+		xhr.open('POST', '${contextPath}/adminRoleCodeCheckIdDuplicate.do', true);
 		xhr.setRequestHeader('Content-Type',
 				'application/x-www-form-urlencoded');
 
@@ -45,10 +45,10 @@
 				const response = JSON.parse(xhr.responseText);
 
 				if (response.isDuplicate) {
-					errorSpan.textContent = '이미 사용 중인 아이디입니다.';
+					errorSpan.textContent = '이미 사용 중인 코드입니다.';
 					errorSpan.style.color = 'red';
 				} else {
-					errorSpan.textContent = '사용 가능한 아이디입니다.';
+					errorSpan.textContent = '사용 가능한 코드입니다.';
 					errorSpan.style.color = 'green';
 				}
 			} else {
@@ -60,15 +60,15 @@
 			errorSpan.textContent = '네트워크 오류가 발생했습니다. 다시 시도해주세요.';
 		};
 
-		xhr.send('memId=' + encodeURIComponent(memId));
+		xhr.send('roleCode=' + encodeURIComponent(roleCode));
 	}
 	document.addEventListener('DOMContentLoaded', function() {
-		const memIdInput = document.querySelector('input[name="memId"]');
+		const roleCodeInput = document.querySelector('input[name="roleCode"]');
 
-		if (memIdInput) {
-			memIdInput.addEventListener('blur', checkIdDuplicate);
+		if (roleCodeInput) {
+			roleCodeInput.addEventListener('blur', checkadminRoleCodeDuplicate);
 		} else {
-			console.error('Could not find input element with name "memId"');
+			console.error('Could not find input element with name "roleCode"');
 		}
 	});
 </script>
@@ -76,11 +76,11 @@
 <body>
 	<div align="center">
 		<h3>어드민 역활 등록</h3>
-		<form action="${ contextPath }/adminRollInsert.do" method="post" onsubmit="return validatePasswords()">
+		<form action="${ contextPath }/adminRoleInsert.do" method="post" onsubmit="return validatePasswords()">
 			<table class="insertTableForm">
 				<tr>
 					<th>역활코드</th>
-					<td><input type="text" name="rollCode" required></td>
+					<td><input type="text" name="roleCode" required></td>
 				</tr>
 				<tr>
 					<th>역활 이름</th>
@@ -93,6 +93,10 @@
 					</td>
 				</tr>
 			</table>
+            <div class="errorArea">
+                <span id="id-error" class="error-message"></span>
+                <span id="password-error" class="error-message"></span>
+            </div>
 		</form>
 	</div>
 </body>

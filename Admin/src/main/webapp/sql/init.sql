@@ -11,7 +11,7 @@ DROP TABLE ORDER_ITEM CASCADE CONSTRAINTS;                           -- 주문 �
 DROP TABLE ORDERS CASCADE CONSTRAINTS;                               -- 주문 관리 테이블 삭제
 DROP TABLE PAYMENT CASCADE CONSTRAINTS;                              -- 결제 관리 테이블 삭제
 DROP TABLE SHIPMENT CASCADE CONSTRAINTS;                             -- 배송 관리 테이블 삭제
-DROP TABLE ADMIN_ROLL CASCADE CONSTRAINTS;                           -- 관리자 역할 관리 테이블 삭제
+DROP TABLE ADMIN_ROLE CASCADE CONSTRAINTS;                           -- 관리자 역할 관리 테이블 삭제
 DROP TABLE ADMIN CASCADE CONSTRAINTS;                                -- 관리자 계정 관리 테이블 삭제
 DROP TABLE CUSTOMER CASCADE CONSTRAINTS;                             -- 회원 정보 관리 테이블 삭제
 
@@ -36,19 +36,20 @@ CREATE TABLE CUSTOMER (
 
 -- 관리자 계정을 관리하는 테이블
 CREATE TABLE ADMIN (
-    ADMIN_ID NUMBER PRIMARY KEY,                    -- 관리자 번호 (Primary Key)
-    USER_ID VARCHAR2(50) UNIQUE NOT NULL,           -- 관리자 아이디 (Unique)
-    PASSWORD VARCHAR2(100) NOT NULL,                -- 관리자 비밀번호
-    NAME VARCHAR2(100) NOT NULL,                    -- 관리자 이름
-    EMAIL VARCHAR2(100),                            -- 관리자 이메일 주소
-    IS_DELETED CHAR(1) DEFAULT 'N' CHECK (IS_DELETED IN ('Y', 'N'))                  -- 관리자 계정 삭제 여부 (Default: N)
+    ADMIN_ID VARCHAR2(300) PRIMARY KEY,        -- 관리자 번호 (Primary Key)
+    USER_ID VARCHAR2(50) UNIQUE NOT NULL,      -- 관리자 아이디 (Unique)
+    PASSWORD VARCHAR2(100) NOT NULL,           -- 관리자 비밀번호
+    NAME VARCHAR2(100) NOT NULL,               -- 관리자 이름
+    EMAIL VARCHAR2(100),                       -- 관리자 이메일 주소
+    ROLE_CODE VARCHAR2(300),                   -- 역할 코드 (ADMIN_ROLE 테이블의 ROLE_CODE를 참조)
+    IS_DELETED CHAR(1) DEFAULT 'N' CHECK (IS_DELETED IN ('Y', 'N')),  -- 관리자 계정 삭제 여부 (Default: N)
+    FOREIGN KEY (ROLE_CODE) REFERENCES ADMIN_ROLE(ROLE_CODE)  -- FOREIGN KEY로 ADMIN_ROLE 테이블의 ROLE_CODE 참조
 );
 
+
 CREATE TABLE ADMIN_ROLE (
-    ROLL_CODE VARCHAR2(300) PRIMARY KEY,             -- 역할 코드 (Primary Key)
-    ROLL_NAME VARCHAR2(100) NOT NULL,                -- 역할 이름
-    ADMIN_ID NUMBER,                                 -- 관리자의 ID
-    FOREIGN KEY (ADMIN_ID) REFERENCES ADMIN(ADMIN_ID) -- 관리자 테이블의 외래 키 참조
+    ROLE_CODE VARCHAR2(300) PRIMARY KEY,             -- 역할 코드 (Primary Key)
+    ROLE_NAME VARCHAR2(100) NOT NULL                -- 역할 이름
 );
 
 

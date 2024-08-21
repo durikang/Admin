@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	<div align="center">
     <h3>회원 등록</h3>
 
-    <form action="${ contextPath }/insertCustomer.do" method="post" onsubmit="return validatePasswords()">
+    <form action="${ contextPath }/adminInsertOk.do" method="post" onsubmit="return validatePasswords()">
         <table class="insertTableForm">
             <tr>
                 <th>관리자 아이디</th>
@@ -115,17 +115,23 @@ document.addEventListener('DOMContentLoaded', function() {
             <tr>
                 <th>역활</th>
                 <td>
-                    <select name="emailDomain" id="emailDomain" required onchange="checkEmailDomain()">
-                        <option value="naver.com">naver.com</option>
-                        <option value="gmail.com">gmail.com</option>
-                        <option value="daum.net">daum.net</option>
-                        <option value="other">기타</option>
+                    <select name="role" id="adminRole" required>
+                    	<c:choose>
+							<c:when test="${ !empty list }">
+								<c:forEach items="${list}" var="role">
+									<option value="${ role.roleCode }">${role.roleName }</option>
+								</c:forEach>
+							</c:when>
+	                    	<c:otherwise>
+		                        등록된 역활이 없습니다. 역활 등록부터 해주세요.
+	                    	</c:otherwise>
+                    	</c:choose>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td class="table_bottom button memberInsertBtn" colspan="2">
-                    <input class="btn" type="submit" value="회원 등록">
+                    <input class="btn" type="submit" value="관리자 등록">
                     <input class="btn" type="reset" value="초기화">
                 </td>
             </tr>
@@ -133,20 +139,5 @@ document.addEventListener('DOMContentLoaded', function() {
     </form>
 
 </div>
-
-<script>
-    function checkEmailDomain() {
-        var emailDomain = document.getElementById('emailDomain');
-        var emailDomainCustom = document.getElementById('emailDomainCustom');
-
-        if (emailDomain.value === 'other') {
-            emailDomainCustom.style.display = 'inline';
-            emailDomainCustom.required = true;
-        } else {
-            emailDomainCustom.style.display = 'none';
-            emailDomainCustom.required = false;
-        }
-    }
-</script>
 </body>
 </html>

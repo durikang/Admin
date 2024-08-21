@@ -10,9 +10,9 @@
 <meta charset="UTF-8">
 <title>회원 리스트</title>
 <link href="${contextPath}/resources/master.css" rel="stylesheet" type="text/css"/>
-<link href="${contextPath}/resources/admin/css/adminListPwd.css" rel="stylesheet" type="text/css"/>
-<link href="${contextPath}/resources/admin/css/adminList.css" rel="stylesheet" type="text/css"/>
-<script src="${contextPath}/resources/admin/js/listadmin.js"></script>
+<link href="${contextPath}/resources/member/css/memberListPwd.css" rel="stylesheet" type="text/css"/>
+<link href="${contextPath}/resources/member/css/memberList.css" rel="stylesheet" type="text/css"/>
+<script src="${contextPath}/resources/member/js/listMember.js"></script>
 <script type="text/javascript">
 /**
  * 
@@ -24,7 +24,7 @@ function goToDetailPage(event) {
     const userNo = target.getAttribute('data-id');
     if (userNo) {
         /* window.location.href = '${contextPath}/detail.do?no=' + userNo + '&status='+${status}+'&currentPage='+${pi.currentPage}; */
-        window.location.href = '${contextPath}/customerDetail.do?no=' + userNo + '&status=' + '${status}' + '&currentPage=' + '${pi.currentPage}';
+        window.location.href = '${contextPath}/detail.do?no=' + userNo + '&status=' + '${status}' + '&currentPage=' + '${pi.currentPage}';
     }
 }
 
@@ -183,54 +183,41 @@ document.addEventListener('DOMContentLoaded', function() {
 <body>
 
 <div align="center">
-    <h3>admin 테이블 전체 리스트</h3>
+    <h3>관리자 역활 리스트</h3>
     <div class="spacer"></div> <!-- 공백 추가 -->
 
 	<table border="1">
 	    <tr>
 	        <td class="table_header button" colspan="9" align="right">
-	            전체 관리자 수 : ${count}
+	            전체 역활 수 : ${count}
 	        </td>
 	    </tr>
 	    <tr>
 	        <th>No.</th> 
-	        <th>아이디</th> 
-	        <th>비밀번호</th>
-	        <th>이름</th>
-	        <th>이메일</th>
-	        <th>직급</th>
-	        <th>회원 상태</th>
+	        <th>Code.</th> 
+	        <th>역활 이름</th>	        
 	    </tr>
 	    <c:choose>
 	        <c:when test="${not empty list}">
-	            <c:forEach items="${list}" var="admin">
-	            <tr class="trlist" data-id="${admin.adminId}">
-	                <td>${admin.adminId}</td>
-	                <td>${admin.userId}</td>
-	                <td class="pwd-mask">
-	                    <!-- 기본적으로 maskedPwd를 표시 -->
-	                    <span>${admin.maskedPwd}</span>
-	                    <!-- 마우스 오버 시 실제 비밀번호 표시 -->
-	                    <span class="actual-pwd">${admin.password}</span>
-	                </td>
-	                <td>${admin.name}</td>
-	                <td>${admin.email}</td>
-	                <td>${admin.roleCode}</td>
-	                <td>${admin.isDeleted}</td>
+	            <c:forEach items="${list}" var="role">
+	            <tr class="trlist">
+	                <td>${role.rnum}</td>
+	                <td>${role.roleCode}</td>
+	                <td>${role.roleName}</td>
 	            </tr>
 	            </c:forEach>
 	        </c:when>
 	        <c:otherwise>
 	            <tr>
 	                <td colspan="10" align="center">
-	                    <h3>관리자 데이터가 없습니다.</h3>
+	                    <h3>역활 데이터가 없습니다.</h3>
 	                </td>
 	            </tr>
 	        </c:otherwise>
 	    </c:choose>  
 	    <tr>
 	        <td class="table_bottom button" colspan="9" align="center">
-	            <input type="button" class="btn" value="관리자 등록" onclick="location.href='${contextPath}/adminInsert.do'">
+	            <input type="button" class="btn" value="관리자 역활 등록" onclick="location.href='${contextPath}/adminRoleInsert.go'">
 	        </td>
 	    </tr>
 	</table>
@@ -241,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	    <%--현재 페이지가 1보다 클 때만 "이전" 버튼을 표시합니다.
 	        버튼 클릭 시 currentPage를 1 감소시켜 이전 페이지로 이동합니다. --%>
 	    <c:if test="${pi.currentPage > 1}">
-	        <a href="${contextPath}/customerList.go?currentPage=${pi.currentPage - 1}&status=${param.status}" class="pagination-button">이전</a>
+	        <a href="${contextPath}/adminRoleList.li?currentPage=${pi.currentPage - 1}&status=${param.status}" class="pagination-button">이전</a>
 	    </c:if>
 	    
 	    <%-- 페이지 번호 버튼 --%>
@@ -253,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	                <span class="pagination-button current">${pageNum}</span>
 	            </c:when>
 	            <c:otherwise>
-	                <a href="${contextPath}/customerList.go?currentPage=${pageNum}&status=${param.status}" class="pagination-button">${pageNum}</a>
+	                <a href="${contextPath}/adminRoleList.li?currentPage=${pageNum}&status=${param.status}" class="pagination-button">${pageNum}</a>
 	            </c:otherwise>
 	        </c:choose>
 	    </c:forEach>
@@ -262,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	    <%-- 현재 페이지가 maxPage보다 작을 때만 "다음" 버튼을 표시합니다.
 	        버튼 클릭 시 currentPage를 1 증가시켜 다음 페이지로 이동합니다. --%>
 	    <c:if test="${pi.currentPage < pi.maxPage}">
-	        <a href="${contextPath}/customerList.go?currentPage=${pi.currentPage + 1}&status=${param.status}" class="pagination-button">다음</a>
+	        <a href="${contextPath}/adminRoleList.li?currentPage=${pi.currentPage + 1}&status=${param.status}" class="pagination-button">다음</a>
 	    </c:if>
 	</div>
 

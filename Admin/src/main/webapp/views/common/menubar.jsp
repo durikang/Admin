@@ -14,9 +14,10 @@
          관리자 관리 <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-         <a href="${ contextPath }/adminInsert.go">관리자 등록</a> 
-         <a href="${ contextPath }/adminRollInsert.go">관리자 역활 등록</a> 
-         <a href="${ contextPath }/adminList.go">관리자 목록</a>
+         <a href="${ contextPath }/adminInsert.do">관리자 등록</a> 
+         <a href="${ contextPath }/adminRoleInsert.go">관리자 역활 등록</a> 
+         <a href="${ contextPath }/adminRoleList.li">관리자 역활 목록</a> 
+         <a href="${ contextPath }/adminList.li">관리자 목록</a>
       </div>
    </div>
    <div class="dropdown">
@@ -24,7 +25,7 @@
          회원 관리 <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-         <a href="${contextPath}/customerInsertForm.go">회원 등록</a> 
+         <a href="${ contextPath }/customerInsertForm.go">회원 등록</a> 
          <a href="${ contextPath }/customerList.li">회원 목록</a>
       </div>
    </div>

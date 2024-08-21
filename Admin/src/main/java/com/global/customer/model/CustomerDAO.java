@@ -331,7 +331,6 @@ public class CustomerDAO {
 	}
 
 	public boolean checkDuplicateId(String USER_ID) {
-		boolean isDuplicate = false;
 
 		try {
 			openConn();
@@ -343,17 +342,16 @@ public class CustomerDAO {
 
 			if (rs.next()) {
 				// 결과가 있다면 아이디가 중복됨
-				isDuplicate = true;
+				return true;
 			}
 
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			closeConn(rs, pstmt, conn);
 		}
 
-		return isDuplicate;
+		return false;
 	}
 
 	public int deleteStudent(int num) {
