@@ -17,8 +17,9 @@
 		location.href="${contextPath}/main.go";
 	}
 
-	
-	
+	/* 
+	hihi
+	 */
 
 </script>
 </body>
