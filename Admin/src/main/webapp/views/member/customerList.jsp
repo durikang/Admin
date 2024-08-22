@@ -236,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	        <th>등록일</th>
 	        <th>회원 상태</th>
 	    </tr>
+	    <!-- asd -->
 	    <c:choose>
 	        <c:when test="${not empty list}">
 	            <c:forEach items="${list}" var="member">
