@@ -4,31 +4,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class ProductCategoryDAO {
-
+public class ProductDAO {
+	
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String sql = null;
 	
 	// 싱글톤
-	public static ProductCategoryDAO instance=null;
+	public static ProductDAO instance=null;
 
 	// 기본생성자
-	public ProductCategoryDAO() {}
+	public ProductDAO() {}
 
 
-	public static ProductCategoryDAO getInstance() {
+	public static ProductDAO getInstance() {
 
 		if (instance == null) {
-			instance = new ProductCategoryDAO();
+			instance = new ProductDAO();
 		}
 		return instance;
 	}
@@ -106,77 +104,6 @@ public class ProductCategoryDAO {
 
 	} // closeConn() end
 
-
-	// 카테고리 등록 메서드
-	public int insertCategory(ProductCategoryDTO dto) {
-		
-		int result = 0;
-		
-		try {
-		
-		openConn();
-		
-		sql = "INSERT INTO PRODUCT_CATEGORY VALUES(?,?,?)";
-		
-		pstmt = con.prepareStatement(sql);
-		
-		pstmt.setString(1, dto.getCategoryId());
-		pstmt.setString(2, dto.getName());
-		pstmt.setString(3, dto.getDescription());
-		
-		result = pstmt.executeUpdate();
-		
-		
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		
-		
-		} finally {
-			closeConn(pstmt, con);
-		}
-		
-		return result;
-	} // 카테고리 등록 종료
-
-
-	public List<ProductCategoryDTO> getCategoryList() {
-
-		List<ProductCategoryDTO> list = new ArrayList<ProductCategoryDTO>();
-		
-		try {
-			/* 수정사항 */
-		openConn();
-		
-		sql = "SELECT * FROM PRODUCT_CATEGORY";
-		
-		pstmt = con.prepareStatement(sql);
-		
-		rs = pstmt.executeQuery();
-		
-		while (rs.next()) {
-			
-			ProductCategoryDTO dto = new ProductCategoryDTO();
-			
-			dto.setCategoryId(rs.getString("category_id"));
-			dto.setName(rs.getString("name"));
-			dto.setDescription(rs.getString("description"));
-			
-			list.add(dto);
-		}
-//		안녕 안녕
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			closeConn(rs, pstmt, con);
-		}
-		
-		return list;
-	}
-
 	
 	
-			
 }
