@@ -25,10 +25,8 @@
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--
     <Manager pathname="" />
-   
     -->
-    
-        <Resource
+            <Resource
        name = "jdbc/myoracle"
        auth = "Container"
        type = "javax.sql.DataSource"
@@ -39,4 +37,5 @@
        maxActive= "100"
        maxidle = "50"
     />
-</Context>
+    
+ </Context>
