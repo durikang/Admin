@@ -146,7 +146,7 @@ public class ProductCategoryDAO {
 		List<ProductCategoryDTO> list = new ArrayList<ProductCategoryDTO>();
 		
 		try {
-
+			/* 수정사항 */
 		openConn();
 		
 		sql = "SELECT * FROM PRODUCT_CATEGORY";
