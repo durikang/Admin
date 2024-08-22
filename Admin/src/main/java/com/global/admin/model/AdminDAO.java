@@ -313,10 +313,29 @@ public class AdminDAO {
 	}
 
 	public int updateAdmin(AdminDTO admin) {
+		int res = 0;
+		try {
+			openConn();
+			sql = "update admin set password = ? , name = ? , email = ?, role_code = ? , is_deleted = ? where admin_id = ?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, admin.getPassword());
+			pstmt.setString(2, admin.getName());
+			pstmt.setString(3, admin.getEmail());
+			pstmt.setString(4, admin.getRoleCode());
+			pstmt.setString(5, String.valueOf(admin.getIsDeleted()));
+			pstmt.setInt(6, admin.getAdminId());
+			
+			res = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeConn(pstmt, conn);
+		}
 		
 		
 		
-		
-		return 0;
+		return res;
 	}
 }
