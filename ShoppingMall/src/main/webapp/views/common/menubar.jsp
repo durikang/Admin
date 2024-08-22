@@ -131,8 +131,8 @@
             </ul>
             <div id="utility">
 
-                <a class="utility-button" href="${ contextPath }/views/member/register.jsp">회원가입</a>
-                <a class="utility-button" href="#">로그인</a>
+                <a class="utility-button" href="${ contextPath }/register.go">회원가입</a>
+                <a class="utility-button" href="${ contextPath }/login.go">로그인</a>
                 <a class="utility-button" href="#">장바구니</a>
                 <a class="utility-button utility-icon" href="#"><span
                         class="material-symbols-outlined">shopping_cart</span></a>
