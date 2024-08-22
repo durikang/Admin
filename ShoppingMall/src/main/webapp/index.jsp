@@ -17,7 +17,7 @@
 		location.href="${contextPath}/main.go";
 	}
 /* 
-	20240822 by 성빈
+	2024082201 by 성빈
  */	
 
 </script>
