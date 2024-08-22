@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -162,7 +164,7 @@ public class ProductDAO {
 		ProductDTO product = null;
 		try {
 			openConn();
-			sql = "select * from product where PRODUCT_ID = ?";
+			sql = "select * from product where product_id = ?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, product_id);
@@ -188,5 +190,50 @@ public class ProductDAO {
 		}
 		
 		return product;
+	}
+
+
+	public List<ProductDTO> getProductList() {
+
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+
+		try {
+		
+		openConn();
+		
+		sql = "SELECT * FROM PRODUCT ORDER BY 1 ASC";
+		
+		pstmt = con.prepareStatement(sql);
+		
+		rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			ProductDTO dto = new ProductDTO();
+		
+			dto.setProductId(rs.getInt(1));
+			dto.setCategoryId(rs.getString(2));
+			dto.setName(rs.getString(3));
+			dto.setDescription(rs.getString(4));
+			dto.setPrice(rs.getInt(5));
+			dto.setStockQuantity(rs.getInt(6));
+			dto.setCreatedAt(rs.getDate(7));
+			dto.setUpdatedAt(rs.getDate(8));
+			dto.setIsDeleted(rs.getString(9).charAt(0));
+			
+			list.add(dto);
+		
+		}
+		
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		
+		
+		
+		return list;
 	}
 }

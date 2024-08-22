@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -134,6 +136,42 @@ public class ProductImageDAO {
 		}
 		
 		return result;
+	}
+
+
+	public List<ProductImageDTO> getProductImageList() {
+
+		
+		List<ProductImageDTO> list = new ArrayList<ProductImageDTO>();
+
+		try {
+		
+		openConn();
+		
+		sql = "SELECT * FROM PRODUCT_IMAGE";
+		
+		pstmt = con.prepareStatement(sql);
+		
+		rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			ProductImageDTO dto = new ProductImageDTO();
+			
+			
+		}
+		
+		
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		
+		
+		return list;
+		
 	}
 
 	
