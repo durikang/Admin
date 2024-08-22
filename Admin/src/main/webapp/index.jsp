@@ -16,11 +16,6 @@
 	window.onload = function(){
 		location.href="${contextPath}/main.go";
 	}
-
-	/* 
-	hihi
-	 */
-
 </script>
 </body>
 </html>

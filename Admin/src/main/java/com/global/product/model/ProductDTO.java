@@ -1,15 +1,14 @@
 package com.global.product.model;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 
 //ProductDTO.java
 public class ProductDTO {
  private int productId;
- private int categoryId;
+ private String categoryId;
  private String name;
  private String description;
- private BigDecimal price;
+ private int price;
  private int stockQuantity;
  private Date createdAt;
  private Date updatedAt;
@@ -25,11 +24,11 @@ public class ProductDTO {
      this.productId = productId;
  }
 
- public int getCategoryId() {
+ public String getCategoryId() {
      return categoryId;
  }
 
- public void setCategoryId(int categoryId) {
+ public void setCategoryId(String categoryId) {
      this.categoryId = categoryId;
  }
 
@@ -49,11 +48,11 @@ public class ProductDTO {
      this.description = description;
  }
 
- public BigDecimal getPrice() {
+ public int getPrice() {
      return price;
  }
 
- public void setPrice(BigDecimal price) {
+ public void setPrice(int price) {
      this.price = price;
  }
 

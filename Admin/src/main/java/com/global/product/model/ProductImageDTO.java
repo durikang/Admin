@@ -2,18 +2,18 @@ package com.global.product.model;
 
 //ProductImageDTO.java
 public class ProductImageDTO {
- private int imageId;
+ private String imageId;
  private int productId;
  private String imageUrl;
  private String description;
 
  public ProductImageDTO() {}
 
- public int getImageId() {
+ public String getImageId() {
      return imageId;
  }
 
- public void setImageId(int imageId) {
+ public void setImageId(String imageId) {
      this.imageId = imageId;
  }
 

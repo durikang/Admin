@@ -15,29 +15,27 @@
 		<h3>상품 등록</h3>
 
 		<form action="${ contextPath }/productInsertOk.do" method="post"
-			onsubmit="return validatePasswords()">
+			enctype="multipart/form-data" onsubmit="return validatePasswords()">
 			<table class="insertTableForm">
-		<c:set var="catlist" value="${CategoryList }" />
+				<c:set var="catlist" value="${CategoryList }" />
 				<tr>
 					<th>상품 이름</th>
 					<td><input type="text" name="proName" required></td>
 				</tr>
 				<tr>
 					<th>카테고리 번호</th>
-					<td>
-						<select name="proCategory" requireds>
-	                  <c:if test="${empty CategoryList }">
-	                     <option value="">:::카테고리 코드 없음:::</option>
-	                  </c:if>
-	                  
-	                  <c:if test="${!empty CategoryList }">
-	                     <c:forEach items="${CategoryList }" var="dto">
-	                        <option value="${dto.getCategoryId() }">
-	                         ${dto.getName() } (${ dto.getCategoryId() })</option>
-	                     </c:forEach>
-	                  </c:if>
-	               </select>
-					</td>
+					<td><select name="proCategory">
+							<c:if test="${empty CategoryList }">
+								<option value="">:::카테고리 코드 없음:::</option>
+							</c:if>
+
+							<c:if test="${!empty CategoryList }">
+								<c:forEach items="${CategoryList }" var="dto">
+									<option value="${dto.getCategoryId() }">
+										${dto.getName() } (${ dto.getCategoryId() })</option>
+								</c:forEach>
+							</c:if>
+					</select></td>
 				</tr>
 				<tr>
 					<th>상품 정보</th>
@@ -45,18 +43,27 @@
 				</tr>
 				<tr>
 					<th>상품 가격</th>
-					<td><input type="text" name="proprice" required></td>
+					<td><input type="text" name="proPrice" required></td>
 				</tr>
 				<tr>
-                <th>제고 수량</th>
-                    <td><input type="text" name="prosu" required></td>
-                </tr>
-            	<tr>
+					<th>제고 수량</th>
+					<td><input type="text" name="proSu" required></td>
+				</tr>
+				<tr>
+					<th>상품 이미지</th>
+					<td><input type="file" name="proimage"></td>
+				</tr>
+				<tr>
+					<th>상품 이미지 이름</th>
+					<td><input type="text" name="proimagename"></td>
+				</tr>
+				<tr>
 					<td class="table_bottom button productInsertBtn" colspan="2">
 						<input class="btn" type="submit" value="카테고리 등록"> <input
 						class="btn" type="reset" value="초기화">
 					</td>
 				</tr>
+
 			</table>
 		</form>
 	</div>
