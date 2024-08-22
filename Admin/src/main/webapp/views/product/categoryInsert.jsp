@@ -16,6 +16,12 @@
     <form action="${ contextPath }/productCategoryInsert.do" method="post" onsubmit="return validatePasswords()">
         <table class="insertTableForm">
             <tr>
+                <th>카테고리 번호</th>
+                <td>
+                    <input type="text" name="cateId" required>
+                </td>
+            </tr>
+            <tr>
                 <th>카테고리 이름</th>
                 <td>
                     <input type="text" name="cateName" required>
