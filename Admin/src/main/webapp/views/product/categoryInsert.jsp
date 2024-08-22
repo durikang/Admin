@@ -33,6 +33,7 @@
                     <textarea rows="8" cols="22" name="cateInfo"></textarea>
                 </td>
             </tr>
+            
                         <tr>
                 <td class="table_bottom button categoryInsertBtn" colspan="2">
                     <input class="btn" type="submit" value="카테고리 등록">

@@ -34,10 +34,10 @@
          상품 관리 <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-         <a href="${contextPath}/productInsert.go">상품 등록</a> 
+         <a href="${contextPath}/productInsert.do">상품 등록</a> 
          <a href="${contextPath}/productList.li">상품 목록</a> 
          <a href="${contextPath}/productCategoryInsert.go">카테고리 등록</a> 
-         <a href="${contextPath}/productCategoryList.li">>카테고리 목록</a>
+         <a href="${contextPath}/productCategoryList.li">카테고리 목록</a>
       </div>
    </div>
    <div class="dropdown">
