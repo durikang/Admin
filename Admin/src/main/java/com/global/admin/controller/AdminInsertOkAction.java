@@ -15,11 +15,12 @@ public class AdminInsertOkAction implements Action {
 
 	@Override
 	public View execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String id = request.getParameter("adminId");
-		String pwd = request.getParameter("adminPwd");
-		String name = request.getParameter("adminName");
-		String email = request.getParameter("emailId") + "@" + request.getParameter("emailDomain");
-		String role = request.getParameter("role");
+		String id = request.getParameter("adminId").trim();
+		String pwd = request.getParameter("adminPwd").trim();
+		String name = request.getParameter("adminName").trim();
+		System.out.println("name " + name);
+		String email = request.getParameter("emailId").trim() + "@" + request.getParameter("emailDomain").trim();
+		String role = request.getParameter("role").trim();
 		
 		AdminDTO admin = new AdminDTO();
 		admin.setUserId(id);
