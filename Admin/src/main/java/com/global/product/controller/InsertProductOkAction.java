@@ -42,7 +42,7 @@ public class InsertProductOkAction implements Action {
 				
 				
 				/*
-					20240822
+					20240822ㅇㄹ
 				*/
 		
 		return null;
