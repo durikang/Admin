@@ -10,9 +10,9 @@
 <meta charset="UTF-8">
 <title>회원 리스트</title>
 <link href="${contextPath}/resources/master.css" rel="stylesheet" type="text/css"/>
-<link href="${contextPath}/resources/admin/css/adminListPwd.css" rel="stylesheet" type="text/css"/>
-<link href="${contextPath}/resources/admin/css/adminList.css" rel="stylesheet" type="text/css"/>
-<script src="${contextPath}/resources/admin/js/listadmin.js"></script>
+<link href="${contextPath}/resources/member/css/memberListPwd.css" rel="stylesheet" type="text/css"/>
+<link href="${contextPath}/resources/member/css/memberList.css" rel="stylesheet" type="text/css"/>
+<script src="${contextPath}/resources/member/js/listMember.js"></script>
 <script type="text/javascript">
 /**
  * 
@@ -24,7 +24,7 @@ function goToDetailPage(event) {
     const userNo = target.getAttribute('data-id');
     if (userNo) {
         /* window.location.href = '${contextPath}/detail.do?no=' + userNo + '&status='+${status}+'&currentPage='+${pi.currentPage}; */
-        window.location.href = '${contextPath}/customerDetail.do?no=' + userNo + '&status=' + '${status}' + '&currentPage=' + '${pi.currentPage}';
+        window.location.href = '${contextPath}/adminDetail.do?no=' + userNo + '&status=' + '${status}' + '&currentPage=' + '${pi.currentPage}';
     }
 }
 

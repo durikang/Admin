@@ -19,7 +19,7 @@ public class AdminInsertOkAction implements Action {
 		String pwd = request.getParameter("adminPwd");
 		String name = request.getParameter("adminName");
 		String email = request.getParameter("emailId") + "@" + request.getParameter("emailDomain");
-		String role = request.getParameter("adminRole");
+		String role = request.getParameter("role");
 		
 		AdminDTO admin = new AdminDTO();
 		admin.setUserId(id);

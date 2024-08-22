@@ -281,4 +281,34 @@ public class AdminDAO {
 		}
 		return count;
 	}
+
+	public AdminDTO getAdminInfo(int no) {
+		AdminDTO admin = null;
+		
+		try {
+			openConn();
+			sql = "select * from ADMIN where ADMIN_ID = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				admin = new AdminDTO();
+				admin.setAdminId(rs.getInt(1));
+				admin.setUserId(rs.getString(2));
+				admin.setPassword(rs.getString(3));
+				admin.setName(rs.getString(4));
+				admin.setEmail(rs.getString(5));
+				admin.setRoleCode(rs.getString(6));
+				admin.setIsDeleted(rs.getString(7).charAt(0));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, conn);
+		}
+		
+		return admin;
+	}
 }
