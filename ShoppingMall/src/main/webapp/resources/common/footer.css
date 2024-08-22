@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+/* 푸터 CSS */
+footer {
+	background: var(--color-01);
+	padding: 80px 80px 10px;
+	margin-top: 80px;
+	display: flex;
+}
+
+footer ul {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 24px;
+	box-shadow: none;
+	flex: 1;
+	color: var(- -color-02);
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 80px;
+}
+
+footer ul li a {
+	color: var(- -color-02);
+	text-decoration: none;
+	font-size: 14px;
+}
+
+footer ul li {
+	color: var(- -color-02);
+	padding: 0;
+}
+
+@media only screen and (max-width: 600px) {
+	footer {
+		flex-direction: column;
+		text-align: center;
+	}
+}
+
+@media only screen and (min-width: 600px) {
+	footer {
+		flex-direction: column;
+		text-align: center;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	footer {
+		flex-direction: row;
+		text-align: left;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	footer {
+		flex-direction: row;
+		text-align: left;
+	}
+}
