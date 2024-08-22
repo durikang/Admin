@@ -21,10 +21,10 @@
  // JavaScript 함수: 클릭한 행의 ID를 가져와서 상세 페이지로 이동
 function goToDetailPage(event) {
     const target = event.currentTarget;
-    const userNo = target.getAttribute('data-id');
-    if (userNo) {
-        /* window.location.href = '${contextPath}/detail.do?no=' + userNo + '&status='+${status}+'&currentPage='+${pi.currentPage}; */
-        window.location.href = '${contextPath}/adminDetail.do?no=' + userNo + '&status=' + '${status}' + '&currentPage=' + '${pi.currentPage}';
+    const adminId = target.getAttribute('data-id');
+    if (adminId) {
+        
+        window.location.href = '${contextPath}/adminDetail.do?no=' + adminId + '&status=' + '${status}' + '&currentPage=' + '${pi.currentPage}';
     }
 }
 

@@ -27,49 +27,37 @@
 	<c:set var="status" value="${requestScope.status}" />
 
 	<div align="center">
-		<h3>${ mem.name } 의
+		<h3>${ info.name } 의
 			상세 페이지
 		</h3>
 		
 			<table border="1">
 				<tr>
-					<th>회원No.</th>
-					<td>${mem.userNo }</td>
+					<th>No.</th>
+					<td>${info.adminId }</td>
 				</tr>
 				<tr>
-					<th>회원 아이디</th>
-					<td>${mem.userId }</td>
+					<th>아이디</th>
+					<td>${info.userId }</td>
 				</tr>
 
 				<tr>
-					<th>회원명</th>
-					<td>${mem.name }</td>
+					<th>이름</th>
+					<td>${info.name }</td>
 				</tr>
 				<tr>
-					<th>회원 나이</th>
-					<td>${mem.age }</td>
+					<th>이메일</th>
+					<td>${info.email }</td>
 				</tr>
 				<tr>
-					<th>회원 마일리지</th>
-					<td><fmt:formatNumber value="${mem.mileage }" /></td>
-				</tr>
-				<tr>
-					<th>회원 직업</th>
-					<td>${mem.job }</td>
-				</tr>
-				<tr>
-					<th>회원 주소</th>
-					<td>${mem.location }</td>
-				</tr>
-				<tr>
-					<th>회원 등록일</th>
-					<td><fmt:formatDate value="${ mem.createdAt }"/></td>
+					<th>직급</th>
+					<td>${info.roleCode }</td>
 				</tr>
 				<tr>
 					<th>회원 상태</th>
 					<td>
 	                    <c:choose>
-	                        <c:when test="${mem.status eq 'N'}">
+	                        <c:when test="${info.getStatus() eq 'N'}">
 	                            <c:set var="res" value="정상"/>
 	                        </c:when>
 	                        <c:otherwise>
@@ -82,13 +70,13 @@
 				</tr>
 				<tr>
 					<td class="table_bottom button" colspan="8" align="center">
-						<input class="btn" type="button" value="회원정보 수정" onclick="location.href='${ contextPath }/update.do?no=${mem.userNo}&currentPage=${currentPage}&status=${status}'">&nbsp;&nbsp;
+						<input class="btn" type="button" value="정보 수정" onclick="location.href='${ contextPath }/adminUpdateForm.do?no=${info.adminId}&currentPage=${currentPage}&status=${status}'">&nbsp;&nbsp;
 						<c:choose>
-	                        <c:when test="${mem.status == 'N'}">
-	                            <input class="btn" type="button" value="회원정보 삭제" onclick="location.href='${ contextPath }/delete.do?no=${mem.userNo}&currentPage=${currentPage}&status=${status}'">&nbsp;&nbsp;
+	                        <c:when test="${info.status == 'N'}">
+	                            <input class="btn" type="button" value="정보 삭제" onclick="location.href='${ contextPath }/adminDelete.do?no=${info.adminId}&currentPage=${currentPage}&status=${status}'">&nbsp;&nbsp;
 	                        </c:when>
 	                    </c:choose>
-						<input class="btn" type="button" value="회원 목록" onclick="location.href='${contextPath}/mlist.go?currentPage=${currentPage}&status=${status}'">
+						<input class="btn" type="button" value="관리자 목록" onclick="location.href='${contextPath}/adminList.li?currentPage=${currentPage}&status=${status}'">
 					</td>
 				</tr>
 			</table>

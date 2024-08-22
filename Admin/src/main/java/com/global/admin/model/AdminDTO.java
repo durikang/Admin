@@ -84,7 +84,9 @@ public class AdminDTO {
     public char getIsDeleted() {
         return isDeleted;
     }
-
+	public String getStatus() {
+		return String.valueOf(this.isDeleted);
+	}
     public void setIsDeleted(char isDeleted) {
         this.isDeleted = isDeleted;
     }

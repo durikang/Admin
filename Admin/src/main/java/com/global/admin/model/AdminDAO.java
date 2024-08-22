@@ -311,4 +311,12 @@ public class AdminDAO {
 		
 		return admin;
 	}
+
+	public int updateAdmin(AdminDTO admin) {
+		
+		
+		
+		
+		return 0;
+	}
 }

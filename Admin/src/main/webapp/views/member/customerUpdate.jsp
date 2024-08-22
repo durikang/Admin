@@ -87,7 +87,7 @@
 						<td class="table_bottom button memberInsertBtn" colspan="8" align="center">
 							<input class="btn" type="submit" value="수정하기" onclick="test();">&nbsp;&nbsp;
 							<input class="btn" type="reset" value="초기화">&nbsp;&nbsp;
-							<input class="btn" type="button" value="회원 목록" onclick="location.href='${contextPath}/mlist.go?currentPage=${currentPage}&status=${status}'">
+							<input class="btn" type="button" value="회원 목록" onclick="location.href='${contextPath}/customerList.li?currentPage=${currentPage}&status=${status}'">
 						</td>
 					</tr>
 				</table>
