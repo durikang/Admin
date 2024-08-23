@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.utils.ScriptUtil;
 import com.global.action.Action;
 import com.global.action.View;
 import com.global.customer.model.CustomerDAO;
@@ -21,19 +22,12 @@ public class DeleteCustomerAction implements Action {
         String sort = request.getParameter("sort"); // 정렬 옵션
         int currentPage = Integer.parseInt(request.getParameter("currentPage"));
     	
-    	PrintWriter out = response.getWriter();
-    	
-		if(check>0) {
-			out.println("<script>");
-			out.println("alert('고객 삭제 성공!!!')");
-			out.println("location.href='mlist.go?currentPage="+currentPage+"&sort="+sort+"&status="+status+"'");
-			out.println("</script>");
-		}else {
-			out.println("<script>");
-			out.println("alert('고객 삭제 실패!!!')");
-			out.println("history.go(-1)");
-			out.println("</script>");
+        if (check > 0) {
+			ScriptUtil.sendScript(response, "고객 삭제 성공!!", "customerList.li?currentPage=" + currentPage+ "&sort="+sort+"&status="+status+"'");
+		} else {
+			ScriptUtil.sendScript(response, "고객 삭제 실패!!", null);
 		}
+
 		return null;
 	}
 

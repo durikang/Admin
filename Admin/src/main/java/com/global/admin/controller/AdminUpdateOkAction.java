@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.utils.ScriptUtil;
 import com.global.action.Action;
 import com.global.action.View;
 import com.global.admin.model.AdminDAO;
@@ -25,27 +26,18 @@ public class AdminUpdateOkAction implements Action {
 		AdminDTO admin = new AdminDTO();
 		admin.setAdminId(no);
 		admin.setPassword(pwd);
+		admin.setName(name);
 		admin.setEmail(email);
 		admin.setRoleCode(role);
 		admin.setIsDeleted(memberStatus.charAt(0));
 		
 		int check = AdminDAO.getInstance().updateAdmin(admin);
 		
-		
-		PrintWriter out = response.getWriter();
-		
-		if(check>0) {
-			out.println("<script>");
-			out.println("alert('관리자 변경 성공!!!')");
-			out.println("location.href='adminList.li';");
-			out.println("</script>");
-		}else {
-			out.println("<script>");
-			out.println("alert('관리자 변경 실패!!!!')");
-			out.println("history.go(-1)");
-			out.println("</script>");
+		if (check > 0) {
+			ScriptUtil.sendScript(response, "관리자 변경 성공!!!", "main.go");
+		} else {
+			ScriptUtil.sendScript(response, "관리자 변경 실패!!!", null);
 		}
-		
 		
 		return null;
 	}

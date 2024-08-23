@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <body>
 
 <div align="center">
-    <h3>admin 테이블 전체 리스트</h3>
+    <h3>관리자 관리 페이지</h3>
     <div class="spacer"></div> <!-- 공백 추가 -->
 
 	<table border="1">
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	                </td>
 	                <td>${admin.name}</td>
 	                <td>${admin.email}</td>
-	                <td>${admin.roleCode}</td>
+	                <td>(${admin.roleCode}) ${admin.roleName }</td>
 	                <td>${admin.isDeleted}</td>
 	            </tr>
 	            </c:forEach>

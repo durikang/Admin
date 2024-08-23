@@ -230,7 +230,7 @@ public class AdminDAO {
 		
 		try {
 			openConn();
-			sql = "select * from (select row_number() over (order by 1) as rnum, ar.* from ADMIN ar ) where rnum between ? and ?";
+			sql = "SELECT * FROM ( SELECT  ROW_NUMBER() OVER (ORDER BY ar.ADMIN_ID) AS rnum, ar.ADMIN_ID, ar.USER_ID, ar.PASSWORD, ar.NAME, ar.EMAIL, ar.ROLE_CODE, ar.IS_DELETED, ae.ROLE_NAME FROM ADMIN ar JOIN ADMIN_ROLE ae  ON ar.ROLE_CODE = ae.ROLE_CODE) subquery WHERE rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			
 			int startRow = (currentPage - 1) * boardLimit + 1;
@@ -250,6 +250,7 @@ public class AdminDAO {
 				dto.setEmail(rs.getString(6));
 				dto.setRoleCode(rs.getString(7));
 				dto.setIsDeleted(rs.getString(8).charAt(0));
+				dto.setRoleName(rs.getString(9));
 				
 				adminList.add(dto);
 			}
@@ -335,6 +336,24 @@ public class AdminDAO {
 		}
 		
 		
+		
+		return res;
+	}
+
+	public int deleteAdmin(int no) {
+		int res = 0;
+		try {
+			openConn();
+			sql = "update admin set is_deleted='Y' where ADMIN_ID = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			
+			res = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return res;
 	}
