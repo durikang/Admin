@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.utils.ScriptUtil;
 import com.global.action.Action;
 import com.global.action.View;
 import com.global.customer.model.CustomerDAO;
@@ -33,20 +34,11 @@ public class InsertCustomerAction implements Action {
 		
 		int check = CustomerDAO.getInstance().insertMember(insertMember);
 		
-		PrintWriter out = response.getWriter();
-		
-		if(check>0) {
-			out.println("<script>");
-			out.println("alert('고객 정보 입력 성공!!!')");
-			out.println("location.href='customerList.li'");
-			out.println("</script>");
-		}else {
-			out.println("<script>");
-			out.println("alert('고객 정보 입력 실패!!!')");
-			out.println("history.go(-1)");
-			out.println("</script>");
+		if (check > 0) {
+			ScriptUtil.sendScript(response, "고객 정보 입력 성공!!", "customerList.li");
+		} else {
+			ScriptUtil.sendScript(response, "고객 정보 입력 실패!!!", null);
 		}
-		
 		
         return null;
 	}

@@ -10,6 +10,11 @@ public class AdminDTO {
     private String roleCode;   // 역할 코드
     private char isDeleted;    // 관리자 계정 삭제 여부 ('Y', 'N')
 
+    /*subquery 받아 오는 용도*/
+    private String roleName;
+    
+    
+    
     public AdminDTO() {
 	}
     
@@ -23,8 +28,17 @@ public class AdminDTO {
         this.roleCode = roleCode;
         this.isDeleted = isDeleted;
     }
+    
 
-    // Getters and Setters
+    public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	// Getters and Setters
     public int getAdminId() {
         return adminId;
     }

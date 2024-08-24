@@ -18,7 +18,6 @@
 /**
  *  중복체크 ajax 관련 로직입니다.
  */
- 
  function checkIdDuplicate() {
     const memId = document.querySelector('input[name="memId"]').value;
     const errorSpan = document.getElementById('id-error');
@@ -65,11 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
 </script>
 </head>
 <body>
-
 	<div align="center">
     <h3>회원 등록</h3>
 

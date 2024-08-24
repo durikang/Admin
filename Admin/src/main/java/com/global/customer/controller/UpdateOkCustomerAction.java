@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.utils.ScriptUtil;
 import com.global.action.Action;
 import com.global.action.View;
 import com.global.customer.model.CustomerDAO;
@@ -35,20 +36,12 @@ public class UpdateOkCustomerAction implements Action {
     	
     	int check = dao.updateStudent(member,num);
     	
-    	
-    	PrintWriter out = response.getWriter();
-		
-		if(check>0) {
-			out.println("<script>");
-			out.println("alert('고객 정보 변경 성공!!!')");
-			out.println("location.href='detail.do?no=" + num + "';");
-			out.println("</script>");
-		}else {
-			out.println("<script>");
-			out.println("alert('고객 정보 변경 실패!!!')");
-			out.println("history.go(-1)");
-			out.println("</script>");
+		if (check > 0) {
+			ScriptUtil.sendScript(response, "고객 정보 변경 성공!!", "detail.do?no="+ num + "';");
+		} else {
+			ScriptUtil.sendScript(response, "고객 정보 변경 실패!!!", null);
 		}
+		
 		return null;
 	}
 

@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.utils.ScriptUtil;
 import com.global.action.Action;
 import com.global.action.View;
 import com.global.admin.model.AdminDAO;
@@ -24,18 +25,10 @@ public class AdminRoleInsertOkAction implements Action{
 		
 		int check = AdminDAO.getInstance().insertAdminRole(dto);
 		
-		PrintWriter out = response.getWriter();
-		
-		if(check>0) {
-			out.println("<script>");
-			out.println("alert('관리자 역활 등록 성공!!!')");
-			out.println("location.href='main.go';");
-			out.println("</script>");
-		}else {
-			out.println("<script>");
-			out.println("alert('관리자 역활 등록 실패!!!!')");
-			out.println("history.go(-1)");
-			out.println("</script>");
+		if (check > 0) {
+			ScriptUtil.sendScript(response, "관리자 역활 등록 성공!!!", "main.go");
+		} else {
+			ScriptUtil.sendScript(response, "관리자 역활 등록 실패!!!!", null);
 		}
 		
 		
