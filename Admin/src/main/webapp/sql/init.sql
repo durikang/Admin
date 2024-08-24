@@ -90,7 +90,7 @@ CREATE TABLE REPLY (
 
 -- 상품 카테고리를 관리하는 테이블
 CREATE TABLE PRODUCT_CATEGORY (
-    CATEGORY_ID VARCHAR2(300) PRIMARY KEY,                         -- 상품 카테고리 번호 (Primary Key)
+    CATEGORY_ID VARCHAR2(300) PRIMARY KEY,                  -- 상품 카테고리 번호 (Primary Key)
     NAME VARCHAR2(100) NOT NULL,                            -- 상품 카테고리 이름
     DESCRIPTION VARCHAR2(255)                               -- 상품 카테고리 설명
 );
@@ -99,9 +99,9 @@ CREATE TABLE PRODUCT_CATEGORY (
 -- 상품 정보를 관리하는 테이블
 CREATE TABLE PRODUCT (
     PRODUCT_ID NUMBER PRIMARY KEY,                                      -- 상품 번호 (Primary Key)
-    CATEGORY_ID VARCHAR2(300),                                                 -- 상품 카테고리 (PRODUCT_CATEGORY 테이블 참조)
+    CATEGORY_ID VARCHAR2(300),                                          -- 상품 카테고리 (PRODUCT_CATEGORY 테이블 참조)
     NAME VARCHAR2(100) NOT NULL,                                        -- 상품 이름
-    DESCRIPTION CLOB,                                                   -- 상품 설명
+    DESCRIPTION varchar2(4000),                                         -- 상품 설명
     PRICE NUMBER NOT NULL,                                              -- 상품 가격
     STOCK_QUANTITY NUMBER,                                              -- 재고 수량
     CREATED_AT DATE DEFAULT SYSDATE,                                    -- 상품 등록일

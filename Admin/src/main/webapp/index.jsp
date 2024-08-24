@@ -12,6 +12,12 @@
 <body>
 <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 
+
+	window.onload = function(){
+		location.href="${contextPath}/main.go";
+	}
+</script>
+
 <div class="container">
     <div class="login-box">
         <h2>로그인</h2>
@@ -30,6 +36,7 @@
         </form>
     </div>
 </div>
+
 
 </body>
 </html>

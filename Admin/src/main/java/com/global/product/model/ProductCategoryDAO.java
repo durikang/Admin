@@ -149,7 +149,7 @@ public class ProductCategoryDAO {
 			/* 수정사항 */
 		openConn();
 		
-		sql = "SELECT * FROM PRODUCT_CATEGORY";
+		sql = "SELECT * FROM PRODUCT_CATEGORY ";
 		
 		pstmt = con.prepareStatement(sql);
 		
@@ -176,7 +176,4 @@ public class ProductCategoryDAO {
 		return list;
 	}
 
-	
-	
-			
 }

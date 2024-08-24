@@ -11,7 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class ProductDAO {
+public class ProductImageDAO {
+
 	
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -19,16 +20,16 @@ public class ProductDAO {
 	String sql = null;
 	
 	// 싱글톤
-	public static ProductDAO instance=null;
+	public static ProductImageDAO instance=null;
 
 	// 기본생성자
-	public ProductDAO() {}
+	public ProductImageDAO() {}
 
 
-	public static ProductDAO getInstance() {
+	public static ProductImageDAO getInstance() {
 
 		if (instance == null) {
-			instance = new ProductDAO();
+			instance = new ProductImageDAO();
 		}
 		return instance;
 	}
@@ -107,46 +108,25 @@ public class ProductDAO {
 	} // closeConn() end
 
 
-	public int insertProduct(ProductDTO dto) {
+	public int insertImgProduct(ProductDTO product, ProductImageDTO image) {
 
-		int result = 0, count = 0;
-		
-		int product_id=0;
-		
+		int result = 0;
+
 		try {
 		
 		openConn();
 		
-		sql = "SELECT MAX(PRODUCT_ID) FROM PRODUCT";
+		
+		sql = "INSERT INTO PRODUCT_IMAGE VALUES(?,?,?,?)";
 		
 		pstmt = con.prepareStatement(sql);
 		
-		rs = pstmt.executeQuery();
+		pstmt.setString(1, image.getImageId());
+		pstmt.setInt(2, product.getProductId());
+		pstmt.setString(3, image.getImageUrl());
+		pstmt.setString(4, product.getDescription());
 		
-		if(rs.next()) {
-			
-			count = rs.getInt(1) + 1;
-			
-			
-		}
-		
-		sql = "INSERT INTO PRODUCT VALUES(?,?,?,?,?,?,SYSDATE,null, 'N')";
-		
-		
-		
-		pstmt = con.prepareStatement(sql);
-		
-		pstmt.setInt(1,count);
-		pstmt.setString(2, dto.getCategoryId());
-		pstmt.setString(3, dto.getName());
-		pstmt.setString(4, dto.getDescription());
-		pstmt.setInt(5, dto.getPrice());
-		pstmt.setInt(6, dto.getStockQuantity());
-		
-		
-		pstmt.executeUpdate();
-		
-		product_id = count;
+		result = pstmt.executeUpdate();
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -155,74 +135,31 @@ public class ProductDAO {
 			closeConn(rs, pstmt, con);
 		}
 		
-		
-		return product_id;
+		return result;
 	}
 
 
-	public ProductDTO getProduct(int product_id) {
-		ProductDTO product = null;
-		try {
-			openConn();
-			sql = "select * from product where product_id = ?";
-			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setInt(1, product_id);
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				product = new ProductDTO();
-				product.setProductId(rs.getInt(1));
-				product.setCategoryId(rs.getString(2));
-				product.setName(rs.getString(3));
-				product.setDescription(rs.getString(4));
-				product.setPrice(rs.getInt(5));
-				product.setStockQuantity(rs.getInt(6));
-				product.setCreatedAt(rs.getDate(7));
-				product.setUpdatedAt(rs.getDate(8));
-				product.setIsDeleted(rs.getString(9).charAt(0));
-			}
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public List<ProductImageDTO> getProductImageList() {
+
 		
-		return product;
-	}
-
-
-	public List<ProductDTO> getProductList() {
-
-		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		List<ProductImageDTO> list = new ArrayList<ProductImageDTO>();
 
 		try {
 		
 		openConn();
 		
-		sql = "SELECT * FROM PRODUCT ORDER BY 1 ASC";
+		sql = "SELECT * FROM PRODUCT_IMAGE";
 		
 		pstmt = con.prepareStatement(sql);
 		
 		rs = pstmt.executeQuery();
 		
 		while(rs.next()) {
-			ProductDTO dto = new ProductDTO();
-		
-			dto.setProductId(rs.getInt(1));
-			dto.setCategoryId(rs.getString(2));
-			dto.setName(rs.getString(3));
-			dto.setDescription(rs.getString(4));
-			dto.setPrice(rs.getInt(5));
-			dto.setStockQuantity(rs.getInt(6));
-			dto.setCreatedAt(rs.getDate(7));
-			dto.setUpdatedAt(rs.getDate(8));
-			dto.setIsDeleted(rs.getString(9).charAt(0));
+			ProductImageDTO dto = new ProductImageDTO();
 			
-			list.add(dto);
-		
+			
 		}
+		
 		
 		} catch (SQLException e) {
 			
@@ -233,7 +170,11 @@ public class ProductDAO {
 		
 		
 		
-		
 		return list;
+		
 	}
+
+	
+	
+
 }
