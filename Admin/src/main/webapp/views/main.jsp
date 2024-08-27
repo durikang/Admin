@@ -21,6 +21,11 @@
     </c:when>
     <c:when test="${not empty url}">
         <c:import url="${url}" />
+        <c:if test="${not empty pi }">
+        	<c:import url="/views/common/pagination.jsp">
+        		<c:param name="${ address }"></c:param>
+        	</c:import>
+        </c:if>
     </c:when>
     <c:otherwise>
 <%-- 이곳에 컨텐츠가 표시됩니다 --%>

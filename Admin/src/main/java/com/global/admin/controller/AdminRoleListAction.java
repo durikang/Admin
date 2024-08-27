@@ -38,6 +38,7 @@ public class AdminRoleListAction implements Action {
         request.setAttribute("count", count);
         request.setAttribute("list", list);
         request.setAttribute("pi", pi);
+        request.setAttribute("address", "adminRoleList.li");
         
 		return new View("main.go").setUrl("/views/admin/adminRoleList.jsp");
 	}

@@ -11,7 +11,7 @@
 </head>
 <body>
 <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
-
+<script>
 
 	window.onload = function(){
 		location.href="${contextPath}/main.go";
